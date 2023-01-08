@@ -74,41 +74,29 @@ export class RegistrationComponent implements OnInit {
     this.setLocationInTree(this.id);
   }
 
-  setLocationInTree(id:string) {
-    this.fdb.collection('users').doc(this.id).collection('network').snapshotChanges().subscribe(data=>{
-      if(data.length != 0) {
-        this.fdb.collection('users').doc(this.id).collection('network').doc('tree').valueChanges().subscribe(data=>{
-        if(data![this.branch] != (null ||undefined ) ) {
-          console.log(data![this.branch])
-          this.id = data![this.branch];
-          this.setLocationInTree(data![this.branch]);
-        }else {
-          if(this.branch=='left') {
-            this.fdb.collection('users').doc(this.id).collection('network').doc('tree').set(  {'left':this.myid}, {merge:true});
-          }else{
-            this.fdb.collection('users').doc(this.id).collection('network').doc('tree').set( {'right':this.myid}, {merge:true});
-          }
-        }
+  setLocationInTree(id:string) 
+  {
+
+
+    if(this.branch =='left') 
+    {
+      // this.fdb.collection('users').doc(id).collection('network').doc('tree').collection('left').snapshotChanges().subscribe(data=>{
+      //   console.log(data)
+      //   // if(data.payload.exists){
+      //   //   this.fdb.collection('users').doc(id).collection('network').doc('tree').valueChanges().subscribe(data=>{
+      //   //         console.log(data!['right']);
+      //   //         this.setLocationInTree(data!['left'])})
+      //   // }else{
+      //   // this.fdb.collection('users').doc(this.id).collection('network').doc('tree').set(  {'left':this.myid}, {merge:true});
+      //   // }
+      // })
+      this.fdb.collection('users').doc(id).collection('network').doc('tree').get().subscribe(doc=>{
+        console.log(doc);
       })
-      }else {
-        if(this.branch=='left') {
-          this.fdb.collection('users').doc(this.id).collection('network').doc('tree').set(  {'left':this.myid}, {merge:true});
+       
+    }
 
-        }else{
-          this.fdb.collection('users').doc(this.id).collection('network').doc('tree').set( {'right':this.myid}, {merge:true});
-
-        }
-       }
-    })
-
-    // this.fdb.collection('users').doc(this.id).collection('network').doc('tree').valueChanges().subscribe(data=>{
-    //   if(data![this.branch] != (null ||undefined ) ) {
-    //     console.log(data![this.branch])
-    //     this.setLocationInTree(data![this.branch]);
-    //   }else {
-    //     this.fdb.collection('users').doc(this.id).collection('network').doc('tree').set([{'left':this.myid}]);
-    //   }
-    // })
+    
   }
 
 }
