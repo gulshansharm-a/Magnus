@@ -12,8 +12,6 @@ import { data } from 'jquery';
 })
 export class AuthService {
 
-  
-  
   constructor(private fireauth : AngularFireAuth, private router : Router  , private afs : AngularFirestore) { }
 
   // login method
@@ -32,7 +30,32 @@ export class AuthService {
     })
   }
 
+  // Otp Sending
+  async send_otp(phone_no : string){
+    var otp_res = '';
+
+    var api_key = "677cf049-8f77-11ed-9158-0200cd936042";
+    let requestOptions: RequestInit = {
+      method : 'GET',
+      redirect: 'follow'
+  };
+
+    let response = await fetch(`https://2factor.in/API/V1/${api_key}/SMS/+91${phone_no}/AUTOGEN2/OTP1`, requestOptions)
+    .then((response) => response.text())
+    .then((obj) => JSON.parse(obj))
+    .then((result) => {
+      otp_res = result["OTP"];
+      return result["OTP"];
+    })
+    .catch(error => console.log('error', error));
+
+    console.log("opt_res", otp_res);
+    return otp_res;
+
+  }
   
+
+
   // register method
   register(email : string, password : string  , name : string , mobileNo : string , invitationCode :string) {
     console.log('hello')
