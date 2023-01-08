@@ -20,11 +20,18 @@
     
         <div class="col-sm-6" style="justify-content: center;display: flex;">
             <div class="d-flex flex-column f1" >
-                <input type="text" class="input-box" placeholder="Recipient ID" name="dob" >
-                <input type="text" class="input-box" placeholder="Recipient Name" name="dob" style="margin-top: 25px;">
-                <input type="text" class="input-box" placeholder="Select Course" name="dob" style="margin-top: 25px;">
-                <input type="text" class="input-box" placeholder="Amount will be" name="dob" style="margin-top: 25px;">
-                <button type="submit" class="btn" style="margin-top: 50px;" routerLink="/success-e-pin">Transfer</button>
+                <input type="text" class="input-box" placeholder="Recipient ID" name="dob" [(ngModel)] = "recp_id" >
+                <input type="text" class="input-box" placeholder="Recipient Name" name="dob" style="margin-top: 25px;" [(ngModel)] = "recp_name">
+                <select id="cars" class="input-box" name="cars"  style="margin-top: 25px;" [(ngModel)] = "course_n">
+                    <option value="" disabled selected hidden>Choose Course</option>
+                    <option value="Forex Market">Forex Market Education</option>
+                    <option value="Indian Stock">Indian Stock Education</option>
+                    <option value="Combo Course">Combo Course Education
+                        India + Forex Stock
+                        Education</option>
+                  </select>
+                <input type="text" class="input-box" placeholder="Amount will be" name="dob" style="margin-top: 25px;" [(ngModel)] = "amount">
+                <button type="submit" class="btn" style="margin-top: 50px;" routerLink="/success-e-pin" (click)="transfer_epin()">Transfer</button>
             </div>
         </div>
     </div>
