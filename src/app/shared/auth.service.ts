@@ -15,9 +15,9 @@ export class AuthService {
   constructor(private fireauth : AngularFireAuth, private router : Router  , private afs : AngularFirestore) { }
 
   // login method
-  login(email : string, password : string) {
+  async login(email : string, password : string) {
     console.log(email , password)
-    this.fireauth.signInWithEmailAndPassword(email,password).then( res => {
+    await this.fireauth.signInWithEmailAndPassword(email,password).then( res => {
         localStorage.setItem('token','true');
         
         if(res.user?.emailVerified == true) {

@@ -81,6 +81,17 @@
                         <td><div class="subs2" style="color: white;">08/07/2022</div></td>
                         <td><div class="subs" style="color: white;">ASGHKLL</div></td>
                       </tr>
+
+                      <tr *ngFor="let user of user_transfer_arr">
+                        <th scope="row">
+                            <div class="subs2" style="color: white;">{{user.transfer_date}}</div>
+                        </th>
+                        <td><div class="subs2" style="color: white;">{{user.transfer_amount}}</div></td>
+                        <td><div class="subs2" style="color: white;">{{user.recipient_name}}</div></td>
+                        <td><div class="subs2" style="color: white;">{{user.expiry_before_transfer}}</div></td>
+                        <td><div class="subs2" style="color: white;">{{user.expiry_after_transfer}}</div></td>
+                        <td><div class="subs2" style="color: white;">{{user.epin}}</div></td>
+                      </tr>
                     </tbody>
                   </table>
             </div>
