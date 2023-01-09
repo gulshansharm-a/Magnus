@@ -3,7 +3,10 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
-
+interface Tree{
+  left?:string;
+  right?:string;
+}
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -19,16 +22,20 @@ export class RegistrationComponent implements OnInit {
   id:string = '';
   branch:string = '';
   myid?:string='';
+  tree?:Tree= {
+  };
   constructor(public rout:ActivatedRoute,private auth : AuthService, fauth:AngularFireAuth,private fdb:AngularFirestore) {
     this.id = rout.snapshot.params['id'];
     this.branch = rout.snapshot.params['branch'];
+    auth.logout();
     this.setLocationInTree(this.id);
-    fauth.user.subscribe(user=>{
-     
 
+    fauth.user.subscribe(user=>{
       this.myid = user?.uid
     })
-    }
+  
+  }
+
   ngOnInit(): void {
   }
 
@@ -74,29 +81,27 @@ export class RegistrationComponent implements OnInit {
     this.setLocationInTree(this.id);
   }
 
-  setLocationInTree(id:string) 
-  {
-
-
-    if(this.branch =='left') 
-    {
-      // this.fdb.collection('users').doc(id).collection('network').doc('tree').collection('left').snapshotChanges().subscribe(data=>{
-      //   console.log(data)
-      //   // if(data.payload.exists){
-      //   //   this.fdb.collection('users').doc(id).collection('network').doc('tree').valueChanges().subscribe(data=>{
-      //   //         console.log(data!['right']);
-      //   //         this.setLocationInTree(data!['left'])})
-      //   // }else{
-      //   // this.fdb.collection('users').doc(this.id).collection('network').doc('tree').set(  {'left':this.myid}, {merge:true});
-      //   // }
-      // })
-      this.fdb.collection('users').doc(id).collection('network').doc('tree').get().subscribe(doc=>{
-        console.log(doc);
-      })
-       
+  setLocationInTree(id:string) {
+    if(this.branch == 'left'){
+    this.fdb.collection<Tree>('users').doc(id).valueChanges().subscribe(data=>{
+    if(data?.left == undefined) {
+      this.tree!.left = this.myid;
+      this.fdb.collection<Tree>('users').doc(id).set(this.tree!,{merge:true})
+    }else{
+      this.setLocationInTree(data.left)
     }
-
-    
+    })
+  }else{
+    this.fdb.collection<Tree>('users').doc(id).valueChanges().subscribe(data=>{
+      if(data?.right == undefined) {
+        this.tree!.right = this.myid;
+        this.fdb.collection<Tree>('users').doc(id).set(this.tree!,{merge:true})
+      }else{
+        this.setLocationInTree(data.right)
+      }
+    })
+  }
   }
 
 }
+
