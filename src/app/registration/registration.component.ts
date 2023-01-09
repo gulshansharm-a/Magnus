@@ -24,12 +24,11 @@ export class RegistrationComponent implements OnInit {
   myid?:string='';
   tree?:Tree= {
   };
+  cid ?:ID;
   constructor(public rout:ActivatedRoute,private auth : AuthService, fauth:AngularFireAuth,private fdb:AngularFirestore) {
     this.id = rout.snapshot.params['id'];
     this.branch = rout.snapshot.params['branch'];
     auth.logout();
-    this.setLocationInTree(this.id);
-
     fauth.user.subscribe(user=>{
       this.myid = user?.uid
     })
@@ -66,8 +65,6 @@ export class RegistrationComponent implements OnInit {
       return;
     }
     
-    
-    
     this.auth.register(this.email,this.password , this.name , this.mobileNo , this.id);
     if(this.myid!=''|| this.myid == undefined) {
       alert('registration not accepted');
@@ -83,25 +80,37 @@ export class RegistrationComponent implements OnInit {
 
   setLocationInTree(id:string) {
     if(this.branch == 'left'){
-    this.fdb.collection<Tree>('users').doc(id).valueChanges().subscribe(data=>{
+    this.fdb.collection('users').doc(id).collection<Tree>('tree').doc('childs').valueChanges().subscribe(data=>{
     if(data?.left == undefined) {
       this.tree!.left = this.myid;
-      this.fdb.collection<Tree>('users').doc(id).set(this.tree!,{merge:true})
+      console.log('inserted')
+      this.fdb.collection('users').doc(id).collection<Tree>('tree').doc('childs').set(this.tree!,{merge:true})
+      this.fdb.collection('users').doc(id).collection<ID>('team').doc(this.myid).set({cId:this.myid})
+      this.auth.logout()
     }else{
+      console.log(data.left)
       this.setLocationInTree(data.left)
     }
     })
   }else{
-    this.fdb.collection<Tree>('users').doc(id).valueChanges().subscribe(data=>{
+    this.fdb.collection('users').doc(id).collection<Tree>('tree').doc('childs').valueChanges().subscribe(data=>{
+      console.log(data?.right)
       if(data?.right == undefined) {
+        
         this.tree!.right = this.myid;
-        this.fdb.collection<Tree>('users').doc(id).set(this.tree!,{merge:true})
+        this.fdb.collection('users').doc(id).collection<Tree>('tree').doc('childs').set(this.tree!,{merge:true})
+        this.fdb.collection('users').doc(id).collection<ID>('team').doc(this.myid).set({cId:this.myid})
+        this.auth.logout()
       }else{
         this.setLocationInTree(data.right)
+
       }
     })
   }
   }
 
+}
+interface ID{
+    cId?:string;
 }
 

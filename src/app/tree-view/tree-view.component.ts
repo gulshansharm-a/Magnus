@@ -48,25 +48,25 @@ export class TreeViewComponent implements OnInit {
     }
 
     public addDataToTree(user:string):void {
-      this.fdb.collection('users').doc(user).collection('network').doc('tree').valueChanges().subscribe(data=>{
+      this.fdb.collection('users').doc(user).collection('tree').doc('childs').valueChanges().subscribe(data=>{
         console.log(data!['left']);
         this.left = data!['left'];
         this.right = data!['right'];
 
       // left_left and left_right
-      this.fdb.collection('users').doc(this.left).collection('network').doc('tree').valueChanges().subscribe(data=>{
+      this.fdb.collection('users').doc(this.left).collection('tree').doc('childs').valueChanges().subscribe(data=>{
         console.log(data!['left']);
         this.left_left = data!['left'];
         this.left_right = data!['right'];
 
-        this.fdb.collection('users').doc(this.left_left).collection('network').doc('tree').valueChanges().subscribe(data=>{
+        this.fdb.collection('users').doc(this.left_left).collection('tree').doc('childs').valueChanges().subscribe(data=>{
           console.log(data!['left']);
           this.left_left_left = data!['left'];
           this.left_left_right = data!['right'];
   
         });
 
-        this.fdb.collection('users').doc(this.left_right).collection('network').doc('tree').valueChanges().subscribe(data=>{
+        this.fdb.collection('users').doc(this.left_right).collection('tree').doc('childs').valueChanges().subscribe(data=>{
           console.log(data!['left']);
           this.left_right_left = data!['left'];
           this.left_right_right = data!['right'];
@@ -77,19 +77,19 @@ export class TreeViewComponent implements OnInit {
       });
 
       // right_left right_right
-      this.fdb.collection('users').doc(this.right).collection('network').doc('tree').valueChanges().subscribe(data=>{
+      this.fdb.collection('users').doc(this.right).collection('tree').doc('childs').valueChanges().subscribe(data=>{
         console.log(data!['left']);
         this.right_left = data!['left'];
         this.right_right = data!['right'];
 
-        this.fdb.collection('users').doc(this.right_left).collection('network').doc('tree').valueChanges().subscribe(data=>{
+        this.fdb.collection('users').doc(this.right_left).collection('tree').doc('childs').valueChanges().subscribe(data=>{
           console.log(data!['left']);
           this.right_left_left = data!['left'];
           this.right_left_right = data!['right'];
   
         });
 
-        this.fdb.collection('users').doc(this.right_right).collection('network').doc('tree').valueChanges().subscribe(data=>{
+        this.fdb.collection('users').doc(this.right_right).collection('tree').doc('childs').valueChanges().subscribe(data=>{
           console.log(data!['left']);
           this.right_right_left = data!['left'];
           this.right_right_right = data!['right'];
