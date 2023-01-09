@@ -67,6 +67,7 @@ export class AuthService {
         mobNum : mobileNo , invitationid : invitationCode
       })
       
+      
       alert('Registration Successful');
       this.router.navigate(['/login']);
     }, err => {
@@ -79,7 +80,7 @@ export class AuthService {
   logout() {
     this.fireauth.signOut().then( () => {
       localStorage.removeItem('token');
-      this.router.navigate(['/login']);
+      // this.router.navigate(['/login']);
     }, err => {
       alert(err.message);
     })

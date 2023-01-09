@@ -89,7 +89,7 @@ export class TreeViewComponent implements OnInit {
   
         });
 
-        this.fdb.collection('users').doc(this.left_right).collection('network').doc('tree').valueChanges().subscribe(data=>{
+        this.fdb.collection('users').doc(this.right_right).collection('network').doc('tree').valueChanges().subscribe(data=>{
           console.log(data!['left']);
           this.right_right_left = data!['left'];
           this.right_right_right = data!['right'];
