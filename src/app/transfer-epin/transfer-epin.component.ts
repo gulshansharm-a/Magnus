@@ -18,6 +18,11 @@ export class TransferEpinComponent implements OnInit {
   course_n : string = '';
   amount : string = '';
 
+
+
+// This arrangement can be altered based on how we want the date's format to appear.
+
+
   constructor(private auth : AuthService,fStore:AngularFirestore , public auths:AngularFireAuth,private storage:AngularFireStorage ,private router:Router ) {
     this.firestore = fStore;
   
@@ -58,18 +63,48 @@ export class TransferEpinComponent implements OnInit {
         default:
           break;
       }
+
+      const date = new Date();
+
+      let day = date.getDate();
+      let month = date.getMonth() + 1;
+      let year = date.getFullYear();
+      let curr_date = `${day}/${month}/${year}`;
+      let exp_date = `${day}/${month}/${year}`;
+
       
       const user_doc = this.firestore.collection('users').doc(this.recp_id);
       const is_premium = { isPremium: true};
       user_doc.update(is_premium);
-      const amt = { amt: this.amount};
-      user_doc.update(amt);
-      const course = { course_name: this.course_n};
-      user_doc.update(course);
+      const data = { amt: this.amount, 
+        joined_date: curr_date, 
+        expiry_date: exp_date, 
+        course_name: this.course_n,
+        recipient_name: this.recp_name
+      };
+      user_doc.update(data);
+
+
+      const ref_doc = this.firestore.collection('users').doc(user?.uid).collection('referals');
+      const ref_data = { transfer_date: curr_date, 
+        transfer_amt : this.amount, 
+        recipient_name: this.recp_name, 
+        expiry_before_transfer: curr_date ,
+        expiry_after_transfer: curr_date,
+        e_pin : "12345"
+      
+      };
+      ref_doc.add({ ...ref_data });
+
+      
 
 
       });
     
     this.router.navigate(['/transfer-E-pin']);
   }
+
+
 }
+
+
