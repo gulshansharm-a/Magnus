@@ -7,6 +7,19 @@ interface Tree{
   left?:string;
   right?:string;
 }
+interface User {
+  fullName:string;
+  email:string;
+  country:string;
+  city:string;
+  mobNum:string;
+  UID:string;
+  isPremium:Boolean;
+  purchasedCourse:any[];
+  freeCourses:any[];
+  videosWatched:any[];
+  invitation:string;
+}
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -65,27 +78,28 @@ export class RegistrationComponent implements OnInit {
       return;
     }
     
-    this.auth.register(this.email,this.password , this.name , this.mobileNo , this.id);
-    if(this.myid!=''|| this.myid == undefined) {
-      alert('registration not accepted');
+    if(this.auth.register(this.email,this.password , this.name , this.mobileNo , this.id)){
+      this.setLocationInTree(this.id);
     }
+    // console.log("akjsd",this.auth.register(this.email,this.password , this.name , this.mobileNo , this.id))
     this.email = '';
     this.password = '';
     this.name = '';
     this.invitationCode = '';
     this.mobileNo = '';
    
-    this.setLocationInTree(this.id);
+    
   }
 
   setLocationInTree(id:string) {
     if(this.branch == 'left'){
-    this.fdb.collection('users').doc(id).collection<Tree>('tree').doc('childs').valueChanges().subscribe(data=>{
+    this.fdb.collection<User>('users').doc(id).collection<Tree>('tree').doc('childs').valueChanges().subscribe(data=>{
     if(data?.left == undefined) {
       this.tree!.left = this.myid;
       console.log('inserted')
-      this.fdb.collection('users').doc(id).collection<Tree>('tree').doc('childs').set(this.tree!,{merge:true})
-      this.fdb.collection('users').doc(id).collection<ID>('team').doc(this.myid).set({cId:this.myid})
+      
+      this.fdb.collection<User>('users').doc(id).collection<Tree>('tree').doc('childs').set(this.tree!,{merge:true})
+      this.fdb.collection<User>('users').doc(id).collection<ID>('team').doc(this.myid).set({cId:this.myid})
       this.auth.logout()
     }else{
       console.log(data.left)
@@ -93,13 +107,13 @@ export class RegistrationComponent implements OnInit {
     }
     })
   }else{
-    this.fdb.collection('users').doc(id).collection<Tree>('tree').doc('childs').valueChanges().subscribe(data=>{
+    this.fdb.collection<User>('users').doc(id).collection<Tree>('tree').doc('childs').valueChanges().subscribe(data=>{
       console.log(data?.right)
       if(data?.right == undefined) {
         
         this.tree!.right = this.myid;
-        this.fdb.collection('users').doc(id).collection<Tree>('tree').doc('childs').set(this.tree!,{merge:true})
-        this.fdb.collection('users').doc(id).collection<ID>('team').doc(this.myid).set({cId:this.myid})
+        this.fdb.collection<User>('users').doc(id).collection<Tree>('tree').doc('childs').set(this.tree!,{merge:true})
+        this.fdb.collection<User>('users').doc(id).collection<ID>('team').doc(this.myid).set({cId:this.myid})
         this.auth.logout()
       }else{
         this.setLocationInTree(data.right)

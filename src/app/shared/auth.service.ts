@@ -10,8 +10,11 @@ import { data } from 'jquery';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
 
+
+export class AuthService {
+userID?:string;
+loggedin?:boolean;
   constructor(private fireauth : AngularFireAuth, private router : Router  , private afs : AngularFirestore) { }
 
   // login method
@@ -61,19 +64,19 @@ export class AuthService {
     console.log('hello')
     // console.log(email , password)
     this.fireauth.createUserWithEmailAndPassword(email, password).then( res => {
-     console.log('djfkjaksdl');
-       this.afs.collection<Udata>('users').add({
-        email : email , fullName : name ,
-        mobNum : mobileNo , invitationid : invitationCode
-      })
-      
-      
+     this.fireauth.user.subscribe(user=>{
+      this.userID = user?.uid;
+      this.loggedin = true;
+     })
+     
       alert('Registration Successful');
       this.router.navigate(['/login']);
     }, err => {
       alert(err.message);
+      this.loggedin = false;
       this.router.navigate(['/registration']);
     })
+    return this.loggedin;
   }
 
   // sign out
@@ -95,10 +98,16 @@ export class AuthService {
   }
   
 }
-
-interface Udata{
-    email :string;
-    fullName:string;
-    mobNum:string;
-    invitationid:string;
+interface User {
+  fullName:string;
+  email:string;
+  country:string;
+  city:string;
+  mobNum:string;
+  UID:string;
+  isPremium:Boolean;
+  purchasedCourse:any[];
+  freeCourses:any[];
+  videosWatched:any[];
+  invitation:string;
 }
