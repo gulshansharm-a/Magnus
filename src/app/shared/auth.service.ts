@@ -62,7 +62,7 @@ export class AuthService {
     // console.log(email , password)
     this.fireauth.createUserWithEmailAndPassword(email, password).then( res => {
      console.log('djfkjaksdl');
-       this.afs.collection('users').add({
+       this.afs.collection<Udata>('users').add({
         email : email , fullName : name ,
         mobNum : mobileNo , invitationid : invitationCode
       })
@@ -80,13 +80,12 @@ export class AuthService {
   logout() {
     this.fireauth.signOut().then( () => {
       localStorage.removeItem('token');
-      // this.router.navigate(['/login']);
     }, err => {
       alert(err.message);
     })
   }
 
-  // forgot password
+
   forgotPassword(email : string) {
       this.fireauth.sendPasswordResetEmail(email).then(() => {
         this.router.navigate(['/varify-email']);
@@ -96,6 +95,7 @@ export class AuthService {
   }
   
 }
+
 interface Udata{
     email :string;
     fullName:string;
