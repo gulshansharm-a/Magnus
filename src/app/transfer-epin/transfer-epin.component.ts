@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class TransferEpinComponent implements OnInit {
   firestore: AngularFirestore;
 
+  price: string = "Select Course";
   recp_id: string = '';
   recp_name: string = '';
   course_n: string = '';
@@ -31,6 +32,7 @@ export class TransferEpinComponent implements OnInit {
 
 
   ngOnInit(): void {
+this.add_transfer_user();
   }
 
 
@@ -99,27 +101,42 @@ export class TransferEpinComponent implements OnInit {
 
       };
       ref_doc.add({ ...ref_data });
-
-      this.auths.user.subscribe(async (user) => {
-        this.firestore
-          .collection("users").doc(user?.uid).collection("referals")
-          .get()
-          .subscribe((data) => {
-            data.forEach(element => {
-              console.log(element.data());
-              this.user_transfer_arr.push(element.data());
-            });
-            // console.log(data);
-          }
-
-          );
-      });
+      this.user_transfer_arr.push(ref_data);
+      
     });
 
     this.router.navigate(['/transfer-E-pin']);
   }
 
   add_transfer_user() {
+    console.log('RUNN')
+    this.auths.user.subscribe(async (user) => {
+      this.firestore
+        .collection("users").doc(user?.uid).collection("referals")
+        .get()
+        .subscribe((data) => {
+          data.forEach(element => {
+            console.log(element.data());
+            this.user_transfer_arr.push(element.data());
+          });
+        }
+        );
+    });
+    console.log(this.user_transfer_arr);
+
+  }
+
+  priceChange(option: any){
+    console.log(option)
+    if (option == "Forex Market") {
+      this.price = "15000";
+    }
+    if (option == "Indian Stock") {
+      this.price = "15000";
+    }
+    if (option == "Combo Course") {
+      this.price = "25000";
+    }
   }
 
 }
