@@ -14,21 +14,22 @@
                 </a>
                 <ul class="active">
                     <li>
-                        <a href="javascript:void(0);" *ngIf="left" >
+                        <a href="javascript:void(0);" (click)="addDataToTree(left)"  *ngIf="left" data-toggle="popover" data-content="Specify required content inside popover" title="not Premium User  {{left}}">
                             <div class="member-view-box">
                                 <div class="member-image">
                                     <img src="../../assets/OIP.jpg" alt="Member">
+
                                     <div class="member-details">
                                         <b><h1 *ngIf="left_" style="font-size: 20px; color: brown;">*</h1></b>
                                         <h3 style="font-size: 9px;  font-family :Impact,'Arial Narrow Bold'" >{{left}}</h3>
+                                        
                                     </div>
                                 </div>
                             </div>
                         </a>
                         <ul >
-                            
                             <li>
-                                <a href="javascript:void(0);" *ngIf="left_left" >
+                                <a    data-toggle="popover" data-content="Specify required content inside popover" title="not Premium User  {{left_left}}" (click)="addDataToTree(left_left)" href="javascript:void(0);"  *ngIf="left_left" >
                                     <div class="member-view-box">
                                         <div class="member-image">
                                             <img src="../../assets/OIP.jpg" alt="Member">
@@ -41,7 +42,7 @@
                                 </a>
                                 <ul>
                                     <li>
-                                        <a href="javascript:void(0);" *ngIf="left_left_left" >
+                                        <a  data-toggle="popover" data-content="Specify required content inside popover" title="not Premium User  {{left_left_left}}" (click)="addDataToTree(left_left_left)" href="javascript:void(0);"  *ngIf="left_left_left" >
                                             <div class="member-view-box">
                                                 <div class="member-image">
                                                     <img src="../../assets/OIP.jpg" alt="Member">
@@ -54,7 +55,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0);" *ngIf="left_left_right" >
+                                        <a  data-toggle="popover" data-content="Specify required content inside popover" title="not Premium User  {{left_left_right}}" (click)="addDataToTree(left_left_right)" href="javascript:void(0);"  *ngIf="left_left_right" >
                                             <div class="member-view-box">
                                                 <div class="member-image">
                                                     <img src="src/assets/OIP.jpg../../assets/OIP.jpg" alt="Member">
@@ -71,7 +72,7 @@
                             </li>
                             
                             <li>
-                                <a href="javascript:void(0);" *ngIf="left_right" >
+                                <a  data-toggle="popover" data-content="Specify required content inside popover" title="not Premium User  {{left_right}}" (click)="addDataToTree(left_right)" href="javascript:void(0);"  *ngIf="left_right" >
                                     <div class="member-view-box">
                                         <div class="member-image">
                                             <img src="../../assets/OIP.jpg" alt="Member">
@@ -84,7 +85,7 @@
                                 </a>
                                 <ul>
                                     <li>
-                                        <a href="javascript:void(0);" *ngIf="left_right_left" >
+                                        <a  data-toggle="popover" data-content="Specify required content inside popover" title="not Premium User  {{left_right_left}}" (click)="addDataToTree(left_right_left)" href="javascript:void(0);"  *ngIf="left_right_left" >
                                             <div class="member-view-box">
                                                 <div class="member-image">
                                                     <img src="../../assets/OIP.jpg" alt="Member">
@@ -97,7 +98,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0);" *ngIf="left_right_right" >
+                                        <a  data-toggle="popover" data-content="Specify required content inside popover" title="not Premium User  {{left_right_right}}" (click)="addDataToTree(left_right_right)" href="javascript:void(0);"  *ngIf="left_right_right" >
                                             <div class="member-view-box">
                                                 <div class="member-image">
                                                     <img src="../../assets/OIP.jpg" alt="Member">
@@ -116,7 +117,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="javascript:void(0);" *ngIf="right" >
+                        <a  data-toggle="popover" data-content="Specify required content inside popover" title="not Premium User  {{right}}" (click)="addDataToTree(right)" href="javascript:void(0);"  *ngIf="right" >
                             <div class="member-view-box">
                                 <div class="member-image">
                                     <img src="../../assets/OIP.jpg" alt="Member">
@@ -129,7 +130,7 @@
                         </a>
                         <ul>
                             <li>
-                                <a href="javascript:void(0);"  *ngIf="right_left">
+                                <a  data-toggle="popover" data-content="Specify required content inside popover" title="not Premium User  {{right_left}}" (click)="addDataToTree(right_left)" href="javascript:void(0);"   *ngIf="right_left">
                                     <div class="member-view-box">
                                         <div class="member-image">
                                             <img src="../../assets/OIP.jpg" alt="Member">
@@ -142,7 +143,7 @@
                                 </a>
                               <ul>
                                     <li>
-                                        <a href="javascript:void(0);" *ngIf="right_left_left ">
+                                        <a  data-toggle="popover" data-content="Specify required content inside popover" title="not Premium User  {{right_left_left}}" (click)="addDataToTree(right_left_left)" href="javascript:void(0);"  *ngIf="right_left_left ">
                                             <div class="member-view-box">
                                                 <div class="member-image">
                                                     <img src="../../assets/OIP.jpg" alt="Member">
@@ -155,7 +156,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0);" *ngIf="right_left_right">
+                                        <a  data-toggle="popover" data-content="Specify required content inside popover" title="not Premium User  {{right_left_right}}" (click)="addDataToTree(right_left_right)" href="javascript:void(0);"  *ngIf="right_left_right">
                                             <div class="member-view-box">
                                                 <div class="member-image">
                                                     <img src="../../assets/OIP.jpg" alt="Member">
@@ -171,7 +172,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="javascript:void(0);" *ngIf="right_right">
+                                <a  data-toggle="popover" data-content="Specify required content inside popover" title="not Premium User  {{right_right}}" (click)="addDataToTree(right_right)" href="javascript:void(0);"  *ngIf="right_right">
                                     <div class="member-view-box">
                                         <div class="member-image">
                                             <img src="../../assets/OIP.jpg" alt="Member">
@@ -184,7 +185,7 @@
                                 </a>
                                 <ul>
                                     <li>
-                                        <a href="javascript:void(0);" *ngIf="right_right_left">
+                                        <a  data-toggle="popover" data-content="Specify required content inside popover" title="not Premium User  {{right_right_left}}" (click)="addDataToTree(right_right_left)" href="javascript:void(0);"  *ngIf="right_right_left">
                                             <div class="member-view-box">
                                                 <div class="member-image">
                                                     <img src="../../assets/OIP.jpg" alt="Member">
@@ -197,7 +198,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0);" *ngIf="right_right_right">
+                                        <a  data-toggle="popover" data-content="Specify required content inside popover" title="not Premium User  {{right_right_right}}" (click)="addDataToTree(right_right_right)" href="javascript:void(0);"  *ngIf="right_right_right">
                                             <div class="member-view-box">
                                                 <div class="member-image">
                                                     <img src="../../assets/OIP.jpg" alt="Member">
@@ -220,4 +221,8 @@
         </ul>
     </div>
 </div>
-    
+<script>
+    $(document).ready(function(){
+      $('[data-toggle="popover"]').popover();
+    });
+    </script>

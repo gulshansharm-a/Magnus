@@ -36,16 +36,16 @@ export class NetworkComponent implements OnInit {
                                       )
            }
     )
-
+console.log(this.itemsAll)
     
   }
   traverse(id?:string) {
     this.afs.collection('users').doc(id).collection<Tree>('tree').doc('childs').valueChanges().subscribe(data=>{
       if(data?.left!=undefined) {
         this.checkLeftRight(id!)
-        this.left=this.left+1
-        this.afs.collection<User>('users').doc(data.right).valueChanges().forEach(
+        this.afs.collection<User>('users').doc(data.left).valueChanges().forEach(
           datac=>{
+            console.log(datac)
             if(!this.items!.some( ({email}) => email == datac?.email)){
             if(datac?.invitationid==this.myUID) {
               datac!.uID = data.right
@@ -56,6 +56,7 @@ export class NetworkComponent implements OnInit {
           }
         }
         )
+        this.left = this.left+1
         this.traverse(data.left)
       } if(data?.right!=undefined) {
         console.log(data.right)
