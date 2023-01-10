@@ -46,60 +46,61 @@ export class NetworkComponent implements OnInit {
     
   }
   async traverse(id?:string) {
-    await this.afs.collection('users').doc(id).collection<Tree>('tree').doc('childs').valueChanges().subscribe(data=>{
-      if(data?.left!=undefined) {
-        this.checkLeftRight(id!)
-        this.left=this.left+1
+    this.afs.collection('users').doc(id).collection<Tree>('tree').doc('childs').valueChanges().subscribe(data => {
+      if (data?.left != undefined) {
+        this.checkLeftRight(id!);
+        this.left = this.left + 1;
         this.afs.collection<User>('users').doc(data.left).valueChanges().forEach(
-          datac=>{
-            console.log(datac)
-            if(!this.items!.some( ({email}) => email == datac?.email)){
-            if(datac?.invitationid==this.myUID) {
-              datac!.uID = data.right
-                this.items?.push(datac!)
-            }
-            datac!.uID = data.right
-            this.itemsAll?.push(datac!)
-          }
-        }
-        )
-        this.left = this.left+1
-        this.traverse(data.left)
-      } if(data?.right!=undefined) {
-        console.log(data.right)
-        this.checkLeftRight(id!)
-        this.afs.collection<User>('users').doc(data.right).valueChanges().forEach(
-          datac=>{
-            
-            if(!this.items!.some( ({email}) => email == datac?.email)){
-              if(datac?.invitationid==this.myUID) {
-                datac!.uID = data.right
-                  this.items?.push(datac!)
+          datac => {
+            if (!this.items!.some(({ email }) => email == datac?.email)) {
+              if (datac?.invitationid == this.myUID) {
+                datac!.uID = data.right;
+                // this.user_transfer_arr.push(datac!);
+                this.items?.push(datac!);
               }
-              console.log(this.itemsAll)
-              
-              datac!.uID = data.right
-              this.itemsAll?.push(datac!)
+              datac!.uID = data.right;
+              this.user_transfer_arr.push(datac!);
+              this.itemsAll?.push(datac!);
             }
           }
-        )
-        this.right=this.right+1
-        this.traverse(data.right)
-        
+        );
+        this.traverse(data.left);
+      } if (data?.right != undefined) {
+        console.log(data.right);
+        this.checkLeftRight(id!);
+        this.afs.collection<User>('users').doc(data.right).valueChanges().forEach(
+          datac => {
+
+            if (!this.items!.some(({ email }) => email == datac?.email)) {
+              if (datac?.invitationid == this.myUID) {
+                datac!.uID = data.right;
+                // console.log(datac!);
+                this.items?.push(datac!);
+              }
+              // console.log(this.itemsAll)
+              datac!.uID = data.right;
+              console.log(datac!);
+              this.user_transfer_arr.push(datac!);
+              this.itemsAll?.push(datac!);
+            }
+          }
+        );
+        this.right = this.right + 1;
+        this.traverse(data.right);
+
       }
     })
-    if (this.itemsAll.length != 0) {
-      this.add_transfer_user();
-    }
+    
    
   }
-  checkLeftRight(id:string) {
+  async checkLeftRight(id:string) {
     this.afs.collection('users').doc(id).collection<Tree>('tree').doc('childs').valueChanges().subscribe(data=>{
       if(data?.left==undefined||data?.right==undefined) {
         this.number_of_payer_left = this.number_of_payer_left+1
       }
     }
     )
+    
   }
 
   add_transfer_user() {

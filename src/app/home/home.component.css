@@ -3,8 +3,8 @@
 		font-family: 'Poppins';
 	  font-style: normal;
 	  font-weight: 600;
-	  font-size: 60px;
-	  line-height: 90px;
+	  font-size: 50px;
+	  line-height: 70px;
 	  
 	  color: #FFFFFF;
 	  
@@ -12,7 +12,7 @@
 	  .get{
 		color: white;font-family:poppins;font-style: normal;
           font-weight: 500;
-          font-size: 16px;
+          font-size: 20px;
           line-height: 24px;max-width: 528px;height: 220px;margin-top: 20px;
 	  }
 	  .img1{
