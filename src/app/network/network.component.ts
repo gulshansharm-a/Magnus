@@ -52,6 +52,7 @@ export class NetworkComponent implements OnInit {
         this.left=this.left+1
         this.afs.collection<User>('users').doc(data.left).valueChanges().forEach(
           datac=>{
+            console.log(datac)
             if(!this.items!.some( ({email}) => email == datac?.email)){
             if(datac?.invitationid==this.myUID) {
               datac!.uID = data.right
@@ -62,6 +63,7 @@ export class NetworkComponent implements OnInit {
           }
         }
         )
+        this.left = this.left+1
         this.traverse(data.left)
       } if(data?.right!=undefined) {
         console.log(data.right)
