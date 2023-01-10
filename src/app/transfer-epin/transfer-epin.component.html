@@ -22,15 +22,16 @@
             <div class="d-flex flex-column f1" >
                 <input type="text" class="input-box" placeholder="Recipient ID" name="dob" [(ngModel)] = "recp_id" >
                 <input type="text" class="input-box" placeholder="Recipient Name" name="dob" style="margin-top: 25px;" [(ngModel)] = "recp_name">
-                <select id="cars" class="input-box" name="cars"  style="margin-top: 25px;" [(ngModel)] = "course_n">
-                    <option value="" disabled selected hidden>Choose Course</option>
+                <select #mySelect
+                (change)='priceChange(mySelect.value)' id="cars" class="input-box" name="cars"  style="margin-top: 25px;" [(ngModel)] = "course_n">
+                    <option  value="" disabled selected hidden>Choose Course</option>
                     <option value="Forex Market">Forex Market Education</option>
                     <option value="Indian Stock">Indian Stock Education</option>
                     <option value="Combo Course">Combo Course Education
                         India + Forex Stock
                         Education</option>
                   </select>
-                <input type="text" class="input-box" placeholder="Amount will be" name="dob" style="margin-top: 25px;" [(ngModel)] = "amount">
+                <input type="text" class="input-box" placeholder={{price}} disabled name="dob" style="margin-top: 25px;" [(ngModel)] = "amount">
                 <button type="submit" class="btn" style="margin-top: 50px;" routerLink="/success-e-pin" (click)="transfer_epin()">Transfer</button>
             </div>
         </div>
@@ -61,26 +62,7 @@
                       </tr>
                     </thead>
                     <tbody style="background: #2A2A2A;">
-                      <tr>
-                        <th scope="row">
-                            <div class="subs2" style="color: white;">10/03/2022</div>
-                        </th>
-                        <td><div class="subs2" style="color: white;">Rs.1999 (150 days)</div></td>
-                        <td><div class="subs2" style="color: white;">John (T1675)</div></td>
-                        <td><div class="subs2" style="color: white;">08/12/2022</div></td>
-                        <td><div class="subs2" style="color: white;">08/07/2022</div></td>
-                        <td><div class="subs" >ASGHKLL</div></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">
-                            <div class="subs2" style="color: white;">10/03/2022</div>
-                        </th>
-                        <td><div class="subs2" style="color: white;">Rs.1999 (150 days)</div></td>
-                        <td><div class="subs2" style="color: white;">John (T1675)</div></td>
-                        <td><div class="subs2" style="color: white;">08/12/2022</div></td>
-                        <td><div class="subs2" style="color: white;">08/07/2022</div></td>
-                        <td><div class="subs" style="color: white;">ASGHKLL</div></td>
-                      </tr>
+                      
 
                       <tr *ngFor="let user of user_transfer_arr">
                         <th scope="row">
