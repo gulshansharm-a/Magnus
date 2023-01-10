@@ -146,7 +146,7 @@
                       </tr>
                     </thead>
                     <tbody style="background: #2A2A2A;">
-                      <tr>
+                      <!-- <tr>
                         <th scope="row">
                             <div class="d-flex flex-column justify-content-center" style="align-items: center;">
                                 <div class="d-flex justify-content-between" style="width: 200px;">
@@ -260,6 +260,17 @@
                         <td><div class="subs2" style="color: white;">Rs.299</div></td>
                         <td><div class="subs2" style="color: white;">14/06/2022</div></td>
                       </tr>
+
+                      <tr *ngFor="let user of user_transfer_arr">
+                        <th scope="row">
+                            <div class="subs2" style="color: white;">{{user.transfer_date}}</div>
+                        </th>
+                        <td><div class="subs2" style="color: white;">{{user.transfer_amount}}</div></td>
+                        <td><div class="subs2" style="color: white;">{{user.recipient_name}}</div></td>
+                        <td><div class="subs2" style="color: white;">{{user.expiry_before_transfer}}</div></td>
+                        <td><div class="subs2" style="color: white;">{{user.expiry_after_transfer}}</div></td>
+                        <td><div class="subs2" style="color: white;">{{user.epin}}</div></td>
+                      </tr> -->
                     </tbody>
                   </table>
             </div>

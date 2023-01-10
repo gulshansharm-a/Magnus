@@ -12,17 +12,21 @@ import { Observable, of } from 'rxjs';
 })
 
 export class NetworkComponent implements OnInit {
+  user_transfer_arr: any = [
+
+  ]
+
   left:number=0;
   right:number=0;
   number_of_payer_left:number=0;
   items?:User[] = new Array<User>;
-  itemsAll?:User[] = new Array<User>;
+  itemsAll:User[] = new Array<User>;
   myUID?:string;
   constructor(public afs:AngularFirestore,public auth:AngularFireAuth) {
 
    }
 
-  ngOnInit(): void {
+   ngOnInit(): void {
     this.auth.user.subscribe
     (user=>{
       this.traverse(user?.uid)
@@ -36,15 +40,17 @@ export class NetworkComponent implements OnInit {
                                       )
            }
     )
+    
+    
 
     
   }
-  traverse(id?:string) {
-    this.afs.collection('users').doc(id).collection<Tree>('tree').doc('childs').valueChanges().subscribe(data=>{
+  async traverse(id?:string) {
+    await this.afs.collection('users').doc(id).collection<Tree>('tree').doc('childs').valueChanges().subscribe(data=>{
       if(data?.left!=undefined) {
         this.checkLeftRight(id!)
         this.left=this.left+1
-        this.afs.collection<User>('users').doc(data.right).valueChanges().forEach(
+        this.afs.collection<User>('users').doc(data.left).valueChanges().forEach(
           datac=>{
             if(!this.items!.some( ({email}) => email == datac?.email)){
             if(datac?.invitationid==this.myUID) {
@@ -69,6 +75,7 @@ export class NetworkComponent implements OnInit {
                   this.items?.push(datac!)
               }
               console.log(this.itemsAll)
+              
               datac!.uID = data.right
               this.itemsAll?.push(datac!)
             }
@@ -79,6 +86,9 @@ export class NetworkComponent implements OnInit {
         
       }
     })
+    if (this.itemsAll.length != 0) {
+      this.add_transfer_user();
+    }
    
   }
   checkLeftRight(id:string) {
@@ -89,7 +99,18 @@ export class NetworkComponent implements OnInit {
     }
     )
   }
+
+  add_transfer_user() {
+    console.log('RUNN')
+  
+          this.itemsAll.forEach(element => {
+            console.log(element)
+            this.user_transfer_arr.push(element);
+          });
+        
+    console.log(this.user_transfer_arr);
  
+};
 }
 
 interface Tree {

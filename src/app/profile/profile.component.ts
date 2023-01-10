@@ -37,21 +37,12 @@ export class ProfileComponent implements OnInit {
   constructor(fStore:AngularFirestore , public auth:AngularFireAuth,private storage:AngularFireStorage ,public route:Router ) {
     this.firestore = fStore;
     this.alert = false;
-<<<<<<< HEAD
-    this.auth.user.subscribe(user=>{
-      this.firestore.collection('users').doc(user?.uid+"/otherInfo/nominee").get().subscribe(data=>{
-        // if(data.exists) {
-        //   this.route.navigate(['/profile-details']);
-        // }
-      });
-=======
     // this.auth.user.subscribe(user=>{
     //   this.firestore.collection('users').doc(user?.uid+"/otherInfo/nominee").get().subscribe(data=>{
     //     if(data.exists) {
     //       this.route.navigate(['/profile-details']);
     //     }
     //   });
->>>>>>> 1da9bd4406925e9cee7ffc61d4db7eb6a63c4574
 
     //  });
    
@@ -127,13 +118,7 @@ export class ProfileComponent implements OnInit {
     //   console.log("DETAILS DONE")
     //   this.firestore.collection('users').doc(user?.uid+"/otherInfo/SecuriteDetails").set(this.sec_data);
 
-<<<<<<< HEAD
-      this.firestore.collection('users').doc(user?.uid+"/otherInfo/SecuriteDetails").set(val);
-      
-     });
-=======
     //  });
->>>>>>> 1da9bd4406925e9cee7ffc61d4db7eb6a63c4574
   }
   btnClick(id:any){
     if(id=='c1'){
