@@ -23,9 +23,9 @@ export class ProfileComponent implements OnInit {
     this.alert = false;
     this.auth.user.subscribe(user=>{
       this.firestore.collection('users').doc(user?.uid+"/otherInfo/nominee").get().subscribe(data=>{
-        if(data.exists) {
-          this.route.navigate(['/profile-details']);
-        }
+        // if(data.exists) {
+        //   this.route.navigate(['/profile-details']);
+        // }
       });
 
      });
@@ -82,7 +82,7 @@ export class ProfileComponent implements OnInit {
     this.auth.user.subscribe(user=>{
 
       this.firestore.collection('users').doc(user?.uid+"/otherInfo/SecuriteDetails").set(val);
-
+      
      });
   }
   btnClick(id:any){

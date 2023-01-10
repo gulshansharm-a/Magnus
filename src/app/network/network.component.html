@@ -14,24 +14,28 @@
     </div>
     <div class="row">
         <div class="col-sm-6">
-            <div class="d-flex flex-column justify-content-center" style="align-items: center;">
-                <div class="title" style="font-size: 22px;">Direct Students Subscribed</div>
+            <div class="title" style="font-size: 22px;">Direct Students Subscribed</div>
+            <div class="d-flex flex-column justify-content-center" style="align-items: center;"*ngIf="items?.length!>0;">
+                <!-- <div class="d-flex flex-column justify-content-center" style="align-items: center;"> -->
+                
 
-                <div class="box" style="margin-top: 65px;">
+                <div class="box" style="margin-top: 65px;"  *ngFor="let intem of items">
                     <div class="d-flex justify-content-between" style="width: 200px;">
+                        <!-- <div class="d-flex justify-content-between" style="width: 200px;" > -->
                         <div class="profile-pic" style="background-image: url('../../assets/img/ellipse-2-10@2x.svg');background-size: 100% 100%;"></div>
                         <div class="d-flex flex-column">
-                            <div class="subs" style="font-size: 18px;">John David</div>
-                            <div class="subs" style="color: white;">ID:1234</div>
+                            <div class="subs" style="font-size: 18px;">{{intem['fullName']}}</div>
+                            
                         </div>
                     </div>
+                    <div class="subs" style="font-size: 10px; color: white;">{{intem['uID']}}</div>
                     <div class="d-flex justify-content-between" style="width: 200px;margin-top: 10px;">
                         <div class="subs" style="color: white;">Joined On:</div>
                         <div class="subs" style="color: white;">12/05/2022</div>
                     </div>
                     <div class="d-flex justify-content-between" style="width: 200px;">
-                        <div class="subs" style="color: white;">Sponsor:</div>
-                        <div class="subs" style="color: white;">Self</div>
+                        <div class="subs" style="color: white;  ">Referee </div>
+                        <div class="subs" style="color: white;  font-size: 9px; ">{{intem['invitationid']}}</div>
                     </div>
                     <div class="d-flex justify-content-between" style="width: 200px;">
                         <div class="subs" style="color: white;">Payment:</div>
@@ -52,24 +56,27 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
-            <div class="d-flex flex-column justify-content-center" style="align-items: center;margin-top: 50px;">
-                <div class="title" style="font-size: 22px;">Students subscribed in team</div>
+            <div class="title" style="font-size: 22px;">Students subscribed in team</div>
 
-                <div class="box" style="margin-top: 65px;">
+            <div class="d-flex flex-column justify-content-center" style="align-items: center;margin-top: 50px;"*ngIf="itemsAll?.length!>0;">
+               
+                <div class="box" style="margin-top: 65px;" *ngFor="let intem of items" >
                     <div class="d-flex justify-content-between" style="width: 200px;">
+                        <!-- <div class="d-flex justify-content-between" style="width: 200px;" > -->
                         <div class="profile-pic" style="background-image: url('../../assets/img/ellipse-2-10@2x.svg');background-size: 100% 100%;"></div>
                         <div class="d-flex flex-column">
-                            <div class="subs" style="font-size: 18px;">John David</div>
-                            <div class="subs" style="color: white;">ID:1234</div>
+                            <div class="subs" style="font-size: 18px;">{{intem['fullName']}}</div>
+                            
                         </div>
                     </div>
+                    <div class="subs" style="font-size: 10px; color: white;">{{intem['uID']}}</div>
                     <div class="d-flex justify-content-between" style="width: 200px;margin-top: 10px;">
                         <div class="subs" style="color: white;">Joined On:</div>
                         <div class="subs" style="color: white;">12/05/2022</div>
                     </div>
                     <div class="d-flex justify-content-between" style="width: 200px;">
-                        <div class="subs" style="color: white;">Sponsor:</div>
-                        <div class="subs" style="color: white;">Self</div>
+                        <div class="subs" style="color: white;  ">Referee </div>
+                        <div class="subs" style="color: white;  font-size: 9px; ">{{intem['invitationid']}}</div>
                     </div>
                     <div class="d-flex justify-content-between" style="width: 200px;">
                         <div class="subs" style="color: white;">Payment:</div>
@@ -97,16 +104,16 @@
                       <tr>
                         <th scope="col"><div class="table-title">Total left members</div></th>
                         <th scope="col"><div class="table-title">Total right membesrs</div></th>
-                        <th scope="col"><div class="table-title">Completed Pairs</div></th>
+                        <!-- <th scope="col"><div class="table-title">Completed Pairs</div></th> -->
                         <th scope="col"><div class="table-title">Required number to complete pairs</div></th>
                       </tr>
                     </thead>
                     <tbody style="background: #2A2A2A;">
                       <tr>
-                        <th scope="row"><div class="subs2" style="color: white;">13</div></th>
-                        <td><div class="subs2" style="color: white;">11</div></td>
-                        <td><div class="subs2" style="color: white;">10</div></td>
-                        <td><div class="subs2" style="color: white;">05 in left</div></td>
+                        <th scope="row"><div class="subs2" style="color: white;">{{left}}</div></th>
+                        <td><div class="subs2" style="color: white;">{{right}}</div></td>
+                        <!-- <td><div class="subs2" style="color: white;">10</div></td> -->
+                        <td><div class="subs2" style="color: white;">{{ number_of_payer_left}}</div></td>
                       </tr>
                     </tbody>
                   </table>

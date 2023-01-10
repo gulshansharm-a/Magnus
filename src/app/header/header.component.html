@@ -1,6 +1,6 @@
 <nav class="relative px-4 py-4 flex justify-between items-center"  style="background: #1F1F1F;">
     <a class="text-3xl font-bold leading-none" href="#">
-      <img src="../assets/image 2.png" alt="">
+      <img src="../assets/image 2.p ng" alt="">
     </a>
     <div class="lg:hidden">
       <button class="navbar-burger flex items-center text-blue-600 p-3">
@@ -17,7 +17,11 @@
       </li>
       <li><a class="text-sm text-blue-600 font-bold menus" href="#" routerLink="about-us">About Us</a></li>
       <li class="text-gray-300">
-       
+      </li>
+      <li  *ngIf="isLogedin"   ><a class="text-sm text-blue-600 font-bold menus"  href="#" routerLink="profile-details">Dashboard</a>
+        </li>
+      <li class="text-gray-300">
+
       </li>
       <li><a class="text-sm text-gray-400 hover:text-gray-500 menus" href="#" routerLink="invite">Invite</a></li>
       <li class="text-gray-300">
@@ -54,7 +58,7 @@
             <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="#" routerLink="home">Home</a>
           </li>
           <li class="mb-1">
-            <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"  href="#" routerLink="dashboard">Dashboard</a>
+            <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" *ngIf="isLogedin"    href="#" routerLink="dashboard">Dashboard</a>
           </li>
           <li class="mb-1">
             <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="#" routerLink="about-us">About Us</a>

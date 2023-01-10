@@ -18,7 +18,13 @@ export class TreeViewComponent implements OnInit {
      left_left_right:string='';
      left_right_left:string='';
      left_right_right:string='';
-
+     left_?:boolean;
+     left_left_?:boolean;
+    left_right_?:boolean;
+     left_left_left_?:boolean;
+     left_left_right_?:boolean;
+     left_right_left_?:boolean;
+     left_right_right_?:boolean;
 
    right:string = ''
     right_left:string='';
@@ -27,15 +33,20 @@ export class TreeViewComponent implements OnInit {
       right_left_right:string='';
       right_right_left:string='';
       right_right_right:string='';
+      
+      right_?:boolean
+      right_left_?:boolean;
+      right_right_?:boolean;
+      right_left_left_?:boolean;
+      right_left_right_?:boolean;
+      right_right_left_?:boolean;
+      right_right_right_?:boolean;
 
-   
   constructor(public fauth:AngularFireAuth, public fdb:AngularFirestore) {
 
     fauth.user.subscribe(user=>{
       this.myid = user?.uid
-      // left and right logic
      this.addDataToTree(user?.uid!);
-  
     })
    
    
@@ -52,6 +63,18 @@ export class TreeViewComponent implements OnInit {
         console.log(data!['left']);
         this.left = data!['left'];
         this.right = data!['right'];
+        this.fdb.collection<User>('users').doc(this.left).valueChanges().subscribe(data=>{
+          if(data?.invitationid==this.myid)  {
+            this.left_=true
+          }
+        })
+
+        this.fdb.collection<User>('users').doc(this.right).valueChanges().subscribe(data=>{
+          if(data?.invitationid==this.myid)  {
+            this.right_=true
+          }
+        })
+        
 
       // left_left and left_right
       this.fdb.collection('users').doc(this.left).collection('tree').doc('childs').valueChanges().subscribe(data=>{
@@ -59,10 +82,39 @@ export class TreeViewComponent implements OnInit {
         this.left_left = data!['left'];
         this.left_right = data!['right'];
 
+        this.fdb.collection<User>('users').doc(this.left_right).valueChanges().subscribe(data=>{
+          if(data?.invitationid==this.myid)  {
+            this.left_right_=true
+            console.log('true')
+          }
+          
+        })
+        this.fdb.collection<User>('users').doc(this.left_left).valueChanges().subscribe(data=>{
+          if(data?.invitationid==this.myid)  {
+            this.left_left_=true
+            console.log('true')
+          }
+          
+        })
+
         this.fdb.collection('users').doc(this.left_left).collection('tree').doc('childs').valueChanges().subscribe(data=>{
           console.log(data!['left']);
           this.left_left_left = data!['left'];
           this.left_left_right = data!['right'];
+
+          this.fdb.collection<User>('users').doc(this.left_left_right).valueChanges().subscribe(data=>{
+            if(data?.invitationid==this.myid)  {
+              this.left_left_right_=true
+              console.log('true')
+            }
+            
+          })
+          this.fdb.collection<User>('users').doc(this.left_left_left).valueChanges().subscribe(data=>{
+            if(data?.invitationid==this.myid)  {
+              this.left_left_left_=true
+              console.log('true')
+            }
+          })
   
         });
 
@@ -81,11 +133,39 @@ export class TreeViewComponent implements OnInit {
         console.log(data!['left']);
         this.right_left = data!['left'];
         this.right_right = data!['right'];
-
+        this.fdb.collection<User>('users').doc(this.right_right).valueChanges().subscribe(data=>{
+          if(data?.invitationid==this.myid)  {
+            this.right_right_=true
+            console.log('true')
+          }
+          
+        })
+        this.fdb.collection<User>('users').doc(this.right_left).valueChanges().subscribe(data=>{
+          if(data?.invitationid==this.myid)  {
+            this.right_left_=true
+            console.log('true')
+          }
+          
+        })
         this.fdb.collection('users').doc(this.right_left).collection('tree').doc('childs').valueChanges().subscribe(data=>{
           console.log(data!['left']);
           this.right_left_left = data!['left'];
           this.right_left_right = data!['right'];
+
+          this.fdb.collection<User>('users').doc(this.right_left_right).valueChanges().subscribe(data=>{
+            if(data?.invitationid==this.myid)  {
+              this.right_left_right_=true
+              console.log('true')
+            }
+            
+          })
+          this.fdb.collection<User>('users').doc(this.right_left_left).valueChanges().subscribe(data=>{
+            if(data?.invitationid==this.myid)  {
+              this.right_left_left_=true
+              console.log('true')
+            }
+            
+          })
   
         });
 
@@ -93,6 +173,20 @@ export class TreeViewComponent implements OnInit {
           console.log(data!['left']);
           this.right_right_left = data!['left'];
           this.right_right_right = data!['right'];
+          this.fdb.collection<User>('users').doc(this.right_right_right).valueChanges().subscribe(data=>{
+            if(data?.invitationid==this.myid)  {
+              this.right_right_right_=true
+              console.log('true')
+            }
+            
+          })
+          this.fdb.collection<User>('users').doc(this.right_right_left).valueChanges().subscribe(data=>{
+            if(data?.invitationid==this.myid)  {
+              this.right_right_left_=true
+              console.log('true')
+            }
+            
+          })
   
         });
 
@@ -104,4 +198,11 @@ export class TreeViewComponent implements OnInit {
 
 
 
+}
+interface User{
+  email:string;
+  invitationid:string;
+  fullName:string;
+  nobNum:string;
+  uID?:string;
 }

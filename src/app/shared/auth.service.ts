@@ -10,17 +10,14 @@ import { data } from 'jquery';
 @Injectable({
   providedIn: 'root'
 })
-
-
 export class AuthService {
-userID?:string;
-loggedin?:boolean;
+
   constructor(private fireauth : AngularFireAuth, private router : Router  , private afs : AngularFirestore) { }
 
   // login method
-  async login(email : string, password : string) {
+  login(email : string, password : string) {
     console.log(email , password)
-    await this.fireauth.signInWithEmailAndPassword(email,password).then( res => {
+    this.fireauth.signInWithEmailAndPassword(email,password).then( res => {
         localStorage.setItem('token','true');
         
         if(res.user?.emailVerified == true) {
@@ -64,19 +61,24 @@ loggedin?:boolean;
     console.log('hello')
     // console.log(email , password)
     this.fireauth.createUserWithEmailAndPassword(email, password).then( res => {
+     console.log('djfkjaksdl');
      this.fireauth.user.subscribe(user=>{
-      this.userID = user?.uid;
-      this.loggedin = true;
+      if(user?.uid)
+      this.afs.collection<Udata>('users').doc(user?.uid).set({
+        email : email , fullName : name ,
+        mobNum : mobileNo , invitationid : invitationCode
+      },{merge:true})
+      else return;
      })
-     
+       
+      
+      
       alert('Registration Successful');
       this.router.navigate(['/login']);
     }, err => {
       alert(err.message);
-      this.loggedin = false;
       this.router.navigate(['/registration']);
     })
-    return this.loggedin;
   }
 
   // sign out
@@ -98,16 +100,10 @@ loggedin?:boolean;
   }
   
 }
-interface User {
-  fullName:string;
-  email:string;
-  country:string;
-  city:string;
-  mobNum:string;
-  UID:string;
-  isPremium:Boolean;
-  purchasedCourse:any[];
-  freeCourses:any[];
-  videosWatched:any[];
-  invitation:string;
+
+interface Udata{
+    email :string;
+    fullName:string;
+    mobNum:string;
+    invitationid:string;
 }
