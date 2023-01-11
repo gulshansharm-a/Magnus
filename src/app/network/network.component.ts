@@ -1,20 +1,9 @@
-
+import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { data } from 'jquery';
 import { Observable, of } from 'rxjs';
-
-import {FormStyle,
-  getLocaleDateTimeFormat, 
-  TranslationWidth, 
-  FormatWidth} 
-  from '@angular/common';
-
-import {Component, 
-  Inject,OnInit, 
-  LOCALE_ID } 
-  from '@angular/core';
 
 @Component({
   selector: 'app-network',
@@ -33,7 +22,7 @@ export class NetworkComponent implements OnInit {
   items?:User[] = new Array<User>;
   itemsAll:User[] = new Array<User>;
   myUID?:string;
-  constructor(public afs:AngularFirestore,public auth:AngularFireAuth, @Inject(LOCALE_ID) public locale: string,) {
+  constructor(public afs:AngularFirestore,public auth:AngularFireAuth) {
 
    }
 
@@ -42,22 +31,17 @@ export class NetworkComponent implements OnInit {
     (user=>{
       this.traverse(user?.uid)
       this.myUID = user?.uid
-      
-      console.log(user?.uid,user?.metadata.creationTime)
               this.afs.collection('users')
-                    .doc(user?.uid)
-                            .valueChanges().forEach(
-                              data=>{
-                                // console.log(data)
-                              }
-                            )
+                              .doc(user?.uid)
+                                      .valueChanges().forEach(
+                                        data=>{
+                                          // console.log(data)
+                                        }
+                                      )
            }
     )
-    // console.log(getLocaleDateTimeFormat(this.locale,     
-    //   FormatWidth.Full))
     
 
-    
   }
   async traverse(id?:string) {
     this.afs.collection('users').doc(id).collection<Tree>('tree').doc('childs').valueChanges().subscribe(data => {

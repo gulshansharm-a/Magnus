@@ -148,14 +148,14 @@
                     <tbody style="background: #2A2A2A;">
                       
 
-                      <tr *ngFor="let user of user_transfer_arr">
+                      <tr ngIfThen="user.uID == user.invitationid; then user.invitationid = 'self';" *ngFor="let user of user_transfer_arr">
                         <th scope="row">
                             <div class="d-flex flex-column justify-content-center" style="align-items: center;">
                                 <div class="d-flex justify-content-between" style="width: 200px;">
                                     <div class="profile-pic" style="background-image: url('../../assets/img/ellipse-2-10@2x.svg');background-size: 100% 100%;"></div>
                                     <div class="d-flex flex-column">
                                         <div class="subs" style="font-size: 18px;">{{user.fullName}}</div>
-                                        <div class="subs" style="color: white;">{{user.uID}}</div>
+                                        <div class="subs" style="color: white;">{{user.invitationid}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -164,8 +164,9 @@
                             <div class="subs2" style="color: white;">{{user.mobNum}}</div>
                         </td>
                         <td><div class="subs2" style="color: white;">{{user.email}}</div></td>
-                        <td><div class="subs2" style="color: white;">{{user.recipient_name}}</div></td>
-                        <td><div class="subs2" style="color: white;">{{user.expiry_before_transfer}}</div></td>
+                        <td *ngIf="(user.invitationid == user.uID)"><div class="subs2" style="color: white;">{{'self'}}</div></td>
+                        <td><div class="subs2" style="color: white;" *ngIf="(user.invitationid != user.uID)">{{user.invitationid}}</div></td>
+                        <td><div class="subs2" style="color: white;">{{user.currentBal}}</div></td>
                         <td><div class="subs2" style="color: white;">{{user.expiry_after_transfer}}</div></td>
                         <td><div class="subs2" style="color: white;">{{user.epin}}</div></td>
                       </tr>
