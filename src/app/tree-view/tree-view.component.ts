@@ -10,7 +10,7 @@ import * as $ from 'jquery'
 })
 export class TreeViewComponent implements OnInit {
    myid?:string='';
-
+    stack:string[] = new Array<string>();
    left:string='';
     left_left:string='';
     left_right:string='';
@@ -60,6 +60,8 @@ export class TreeViewComponent implements OnInit {
     }
 
     public addDataToTree(user:string):void {
+      this.myid = user;
+      this.stack.push(user)
       this.fdb.collection('users').doc(user).collection('tree').doc('childs').valueChanges().subscribe(data=>{
         console.log(data!['left']);
         this.left = data!['left'];
@@ -67,13 +69,13 @@ export class TreeViewComponent implements OnInit {
         this.fdb.collection<User>('users').doc(this.left).valueChanges().subscribe(data=>{
           if(data?.invitationid==this.myid)  {
             this.left_=true
-          }
+          }else this.left_ =false
         })
 
         this.fdb.collection<User>('users').doc(this.right).valueChanges().subscribe(data=>{
           if(data?.invitationid==this.myid)  {
             this.right_=true
-          }
+          }else this.right_ = false
         })
         
 
@@ -87,6 +89,8 @@ export class TreeViewComponent implements OnInit {
           if(data?.invitationid==this.myid)  {
             this.left_right_=true
             console.log('true')
+          }else{
+            this.left_right_=false
           }
           
         })
@@ -94,6 +98,8 @@ export class TreeViewComponent implements OnInit {
           if(data?.invitationid==this.myid)  {
             this.left_left_=true
             console.log('true')
+          }else{
+            this.left_left_=false
           }
           
         })
@@ -107,14 +113,14 @@ export class TreeViewComponent implements OnInit {
             if(data?.invitationid==this.myid)  {
               this.left_left_right_=true
               console.log('true')
-            }
+            }else this.left_left_right_=false
             
           })
           this.fdb.collection<User>('users').doc(this.left_left_left).valueChanges().subscribe(data=>{
             if(data?.invitationid==this.myid)  {
               this.left_left_left_=true
               console.log('true')
-            }
+            }else this.left_left_left_=false
           })
   
         });
@@ -138,14 +144,14 @@ export class TreeViewComponent implements OnInit {
           if(data?.invitationid==this.myid)  {
             this.right_right_=true
             console.log('true')
-          }
+          }else this.right_right_ = false
           
         })
         this.fdb.collection<User>('users').doc(this.right_left).valueChanges().subscribe(data=>{
           if(data?.invitationid==this.myid)  {
             this.right_left_=true
             console.log('true')
-          }
+          }else this.right_left_=false
           
         })
         this.fdb.collection('users').doc(this.right_left).collection('tree').doc('childs').valueChanges().subscribe(data=>{
@@ -157,7 +163,7 @@ export class TreeViewComponent implements OnInit {
             if(data?.invitationid==this.myid)  {
               this.right_left_right_=true
               console.log('true')
-            }
+            } else   this.right_left_right_=false
             
           })
           this.fdb.collection<User>('users').doc(this.right_left_left).valueChanges().subscribe(data=>{
@@ -165,6 +171,7 @@ export class TreeViewComponent implements OnInit {
               this.right_left_left_=true
               console.log('true')
             }
+            else this.right_left_left_=false
             
           })
   
@@ -179,6 +186,7 @@ export class TreeViewComponent implements OnInit {
               this.right_right_right_=true
               console.log('true')
             }
+            else this.right_right_right_=false
             
           })
           this.fdb.collection<User>('users').doc(this.right_right_left).valueChanges().subscribe(data=>{
@@ -186,6 +194,7 @@ export class TreeViewComponent implements OnInit {
               this.right_right_left_=true
               console.log('true')
             }
+            else this.right_right_left_=false
             
           })
   

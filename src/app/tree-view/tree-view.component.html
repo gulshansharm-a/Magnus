@@ -1,8 +1,9 @@
 <div class="body genealogy-body genealogy-scroll">
     <div class="genealogy-tree">
+        <!-- <button (click)="move_to_up()" >submit</button> -->
         <ul>
             <li>
-                <a href="javascript:void(0);" *ngIf="myid">
+                <a href="javascript:void(0);" *ngIf="myid" (click)="addDataToTree(left)" >
                     <div class="member-view-box">
                         <div class="member-image">
                             <img src="../../assets/OIP.jpg" alt="Member">
@@ -27,6 +28,7 @@
                                 </div>
                             </div>
                         </a>
+                        
                         <ul >
                             <li>
                                 <a    data-toggle="popover" data-content="Specify required content inside popover" title="not Premium User  {{left_left}}" (click)="addDataToTree(left_left)" href="javascript:void(0);"  *ngIf="left_left" >

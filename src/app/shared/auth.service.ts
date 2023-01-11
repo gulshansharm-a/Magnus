@@ -66,7 +66,7 @@ export class AuthService {
       if(user?.uid)
       this.afs.collection<Udata>('users').doc(user?.uid).set({
         email : email , fullName : name ,
-        mobNum : mobileNo , invitationid : invitationCode
+        mobNum : mobileNo , invitationid : invitationCode , joiningDate:user.metadata.creationTime,
       },{merge:true})
       else return;
      })
@@ -106,4 +106,5 @@ interface Udata{
     fullName:string;
     mobNum:string;
     invitationid:string;
+    joiningDate?:string;
 }
