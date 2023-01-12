@@ -1,14 +1,16 @@
 <div class="body genealogy-body genealogy-scroll">
+    <button (click)="addDataToTree(myid!)" style="color: burlywood;" *ngIf="parent != myid" >Move to Top</button>
     <div class="genealogy-tree">
         <!-- <button (click)="move_to_up()" >submit</button> -->
         <ul>
             <li>
-                <a href="javascript:void(0);" *ngIf="myid" (click)="addDataToTree(left)" >
+                
+                <a href="javascript:void(0);" >
                     <div class="member-view-box">
                         <div class="member-image">
                             <img src="../../assets/OIP.jpg" alt="Member">
                             <div class="member-details">
-                                <h3 style="font-size: 9px;  font-family :Impact,'Arial Narrow Bold'" >{{myid}}</h3>
+                                <h3 style="font-size: 9px;  font-family :Impact,'Arial Narrow Bold'" >{{parent}}</h3>
                             </div>
                         </div>
                     </div>
@@ -19,7 +21,6 @@
                             <div class="member-view-box">
                                 <div class="member-image">
                                     <img src="../../assets/OIP.jpg" alt="Member">
-
                                     <div class="member-details">
                                         <b><h1 *ngIf="left_" style="font-size: 20px; color: brown;">*</h1></b>
                                         <h3 style="font-size: 9px;  font-family :Impact,'Arial Narrow Bold'" >{{left}}</h3>
@@ -31,7 +32,7 @@
                         
                         <ul >
                             <li>
-                                <a    data-toggle="popover" data-content="Specify required content inside popover" title="not Premium User  {{left_left}}" (click)="addDataToTree(left_left)" href="javascript:void(0);"  *ngIf="left_left" >
+                                <a data-toggle="popover" data-content="Specify required content inside popover" title="not Premium User  {{left_left}}" (click)="addDataToTree(left_left)" href="javascript:void(0);"  *ngIf="left_left" >
                                     <div class="member-view-box">
                                         <div class="member-image">
                                             <img src="../../assets/OIP.jpg" alt="Member">
@@ -69,7 +70,6 @@
                                             </div>
                                         </a>
                                     </li>
-                                   
                                 </ul>
                             </li>
                             
@@ -111,9 +111,7 @@
                                                 </div>
                                             </div>
                                         </a>
-                                       
                                     </li>
-                                   
                                 </ul>
                             </li>
                         </ul>
@@ -169,8 +167,7 @@
                                                 </div>
                                             </div>
                                         </a>
-                                    </li>
-                                    
+                                    </li> 
                                 </ul>
                             </li>
                             <li>
@@ -215,7 +212,6 @@
                                     
                                 </ul>
                             </li>
-                            
                         </ul>
                     </li>
                 </ul>

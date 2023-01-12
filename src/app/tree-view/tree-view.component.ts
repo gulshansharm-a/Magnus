@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 import * as $ from 'jquery'
 @Component({
@@ -10,6 +11,8 @@ import * as $ from 'jquery'
 })
 export class TreeViewComponent implements OnInit {
    myid?:string='';
+   parent?:string;
+  static bool:boolean ;
     stack:string[] = new Array<string>();
    left:string='';
     left_left:string='';
@@ -42,15 +45,14 @@ export class TreeViewComponent implements OnInit {
       right_right_left_?:boolean;
       right_right_right_?:boolean;
 
-  constructor(public fauth:AngularFireAuth, public fdb:AngularFirestore) {
+  constructor(public fauth:AngularFireAuth, public rout:ActivatedRoute,public fdb:AngularFirestore,public router:Router) {
 
     fauth.user.subscribe(user=>{
+      if(!TreeViewComponent.bool)
       this.myid = user?.uid
-     this.addDataToTree(user?.uid!);
+     this.addDataToTree_i(user?.uid!);
     })
    
-   
-
    }
 
    
@@ -59,8 +61,20 @@ export class TreeViewComponent implements OnInit {
 
     }
 
-    public addDataToTree(user:string):void {
+    addDataToTree(user:string) {
       this.myid = user;
+      TreeViewComponent.bool = true;
+      // this.rout.snapshot.params['parent'];
+      this.router.navigate(['/redirect/'+user+'/redirect']);
+    }
+
+    public addDataToTree_i(user:string):void {
+      console.log(user," ",this.myid)
+      this.fauth.user.subscribe(user=>{
+        this.myid = user?.uid
+      })
+     user =  this.rout.snapshot.params['parent']
+      this.parent = this.rout.snapshot.params['parent']
       this.stack.push(user)
       this.fdb.collection('users').doc(user).collection('tree').doc('childs').valueChanges().subscribe(data=>{
         console.log(data!['left']);
@@ -84,6 +98,7 @@ export class TreeViewComponent implements OnInit {
         console.log(data!['left']);
         this.left_left = data!['left'];
         this.left_right = data!['right'];
+
 
         this.fdb.collection<User>('users').doc(this.left_right).valueChanges().subscribe(data=>{
           if(data?.invitationid==this.myid)  {

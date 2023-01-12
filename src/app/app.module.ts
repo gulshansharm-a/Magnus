@@ -42,6 +42,7 @@ import {AngularFireModule} from '@angular/fire/compat'
 import { FormsModule } from '@angular/forms';
 import { InviteRightComponentComponent } from './invite-right-component/invite-right-component.component';
 import { InviteLeftComponentComponent } from './invite-left-component/invite-left-component.component';
+import { UiCardComponent } from './ui-card/ui-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,7 +77,8 @@ import { InviteLeftComponentComponent } from './invite-left-component/invite-lef
     SuccessEpinComponent,
     UpgradeSubscriptionComponent,
     InviteRightComponentComponent,
-    InviteLeftComponentComponent
+    InviteLeftComponentComponent,
+    UiCardComponent
   ],
   imports: [
     BrowserModule,

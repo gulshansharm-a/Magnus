@@ -25,12 +25,14 @@ import { ShowTreeViewComponent } from './show-tree-view/show-tree-view.component
 import { SuccessEpinComponent } from './success-epin/success-epin.component';
 import { TotalEarningsComponent } from './total-earnings/total-earnings.component';
 import { TransferEpinComponent } from './transfer-epin/transfer-epin.component';
+import { UiCardComponent } from './ui-card/ui-card.component';
 import { UpgradeSubscriptionComponent } from './upgrade-subscription/upgrade-subscription.component';
 import { VideosComponent } from './videos/videos.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
+  {path:'redirect/:parent/redirect',component:UiCardComponent},
   {path: 'about-us', component: AboutUsComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: ':id/:branch', component: RegistrationComponent},
@@ -41,7 +43,7 @@ const routes: Routes = [
   {path: 'contact', component: ContactComponent},
   {path: 'invite', component: InviteComponent},
   {path: 'profile-details', component: ProfileDetailsComponent},
-  {path: 'show-tree-view', component: ShowTreeViewComponent},
+  {path: 'show-tree-view/:parent/tree', component: ShowTreeViewComponent},
   {path: 'videos', component: VideosComponent},
   {path: 'privacy-policy', component: PrivacyPolicyComponent},
   {path: 'legal-doc', component: LegalDocumentComponent},
