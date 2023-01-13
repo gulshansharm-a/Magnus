@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 
 import * as $ from 'jquery'
+import { User } from '../models/User';
 @Component({
   selector: 'app-tree-view',
   templateUrl: './tree-view.component.html',
@@ -13,21 +14,34 @@ export class TreeViewComponent implements OnInit {
    myid?:string='';
    parent?:string;
   static bool:boolean ;
+   isPremium:boolean = false;
+
     stack:string[] = new Array<string>();
    left:string='';
+
     left_left:string='';
     left_right:string='';
      left_left_left:string='';
      left_left_right:string='';
      left_right_left:string='';
      left_right_right:string='';
+
      left_?:boolean;
      left_left_?:boolean;
-    left_right_?:boolean;
+     left_right_?:boolean;
      left_left_left_?:boolean;
      left_left_right_?:boolean;
      left_right_left_?:boolean;
      left_right_right_?:boolean;
+
+     left_i?:boolean;
+     left_left_i?:boolean;
+     left_right_i?:boolean;
+     left_left_left_i?:boolean;
+     left_left_right_i?:boolean;
+     left_right_left_i?:boolean;
+     left_right_right_i?:boolean;
+
 
    right:string = ''
     right_left:string='';
@@ -44,6 +58,14 @@ export class TreeViewComponent implements OnInit {
       right_left_right_?:boolean;
       right_right_left_?:boolean;
       right_right_right_?:boolean;
+
+      right_i?:boolean
+      right_left_i?:boolean;
+      right_right_i?:boolean;
+      right_left_left_i?:boolean;
+      right_left_right_i?:boolean;
+      right_right_left_i?:boolean;
+      right_right_right_i?:boolean;
 
   constructor(public fauth:AngularFireAuth, public rout:ActivatedRoute,public fdb:AngularFirestore,public router:Router) {
 
@@ -83,12 +105,18 @@ export class TreeViewComponent implements OnInit {
         this.fdb.collection<User>('users').doc(this.left).valueChanges().subscribe(data=>{
           if(data?.invitationid==this.myid)  {
             this.left_=true
+            if( data?.isPremium == true ) {
+                this.left_i = true;
+            } else this.left_i = false;
           }else this.left_ =false
         })
 
         this.fdb.collection<User>('users').doc(this.right).valueChanges().subscribe(data=>{
           if(data?.invitationid==this.myid)  {
             this.right_=true
+            if( data?.isPremium == true ) {
+              this.right_i = true;
+          } else this.right_i = false;
           }else this.right_ = false
         })
         
@@ -112,6 +140,9 @@ export class TreeViewComponent implements OnInit {
         this.fdb.collection<User>('users').doc(this.left_left).valueChanges().subscribe(data=>{
           if(data?.invitationid==this.myid)  {
             this.left_left_=true
+            if( data?.isPremium == true ) {
+              this.left_left_i = true;
+          } else this.left_left_i = false;
             console.log('true')
           }else{
             this.left_left_=false
@@ -128,6 +159,9 @@ export class TreeViewComponent implements OnInit {
             if(data?.invitationid==this.myid)  {
               this.left_left_right_=true
               console.log('true')
+              if( data?.isPremium == true ) {
+                this.left_left_right_i = true;
+            } else this.left_left_right_i = false;
             }else this.left_left_right_=false
             
           })
@@ -135,6 +169,9 @@ export class TreeViewComponent implements OnInit {
             if(data?.invitationid==this.myid)  {
               this.left_left_left_=true
               console.log('true')
+              if( data?.isPremium == true ) {
+                this.left_left_left_i = true;
+            } else this.left_left_left_i = false;
             }else this.left_left_left_=false
           })
   
@@ -159,6 +196,9 @@ export class TreeViewComponent implements OnInit {
           if(data?.invitationid==this.myid)  {
             this.right_right_=true
             console.log('true')
+            if( data?.isPremium == true ) {
+              this.right_right_i = true;
+          } else this.right_right_i = false;
           }else this.right_right_ = false
           
         })
@@ -166,6 +206,9 @@ export class TreeViewComponent implements OnInit {
           if(data?.invitationid==this.myid)  {
             this.right_left_=true
             console.log('true')
+            if( data?.isPremium == true ) {
+              this.right_left_i = true;
+          } else this.right_left_i = false;
           }else this.right_left_=false
           
         })
@@ -178,6 +221,10 @@ export class TreeViewComponent implements OnInit {
             if(data?.invitationid==this.myid)  {
               this.right_left_right_=true
               console.log('true')
+              if( data?.isPremium == true ) {
+                this.right_left_right_i = true;
+            } else this.right_left_right_i = false;
+
             } else   this.right_left_right_=false
             
           })
@@ -185,6 +232,9 @@ export class TreeViewComponent implements OnInit {
             if(data?.invitationid==this.myid)  {
               this.right_left_left_=true
               console.log('true')
+              if( data?.isPremium == true ) {
+                this.right_left_left_i = true;
+            } else this.right_left_left_i = false;
             }
             else this.right_left_left_=false
             
@@ -200,6 +250,9 @@ export class TreeViewComponent implements OnInit {
             if(data?.invitationid==this.myid)  {
               this.right_right_right_=true
               console.log('true')
+              if( data?.isPremium == true ) {
+                this.right_right_right_i = true;
+            } else this.right_right_right_i = false;
             }
             else this.right_right_right_=false
             
@@ -208,6 +261,9 @@ export class TreeViewComponent implements OnInit {
             if(data?.invitationid==this.myid)  {
               this.right_right_left_=true
               console.log('true')
+              if( data?.isPremium == true ) {
+                this.right_right_left_i = true;
+            } else this.right_right_left_i = false;
             }
             else this.right_right_left_=false
             
@@ -223,11 +279,4 @@ export class TreeViewComponent implements OnInit {
 
 
 
-}
-interface User{
-  email:string;
-  invitationid:string;
-  fullName:string;
-  nobNum:string;
-  uID?:string;
 }

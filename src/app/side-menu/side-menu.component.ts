@@ -21,10 +21,7 @@ export class SideMenuComponent implements OnInit {
         
       }
        
-      console.log(this.isLogedin);
-        if(!this.isLogedin) {
-          router.navigate(['/home']);
-        }
+      
         
       
     })

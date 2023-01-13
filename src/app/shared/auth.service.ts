@@ -19,10 +19,20 @@ export class AuthService {
     console.log(email , password)
     this.fireauth.signInWithEmailAndPassword(email,password).then( res => {
         localStorage.setItem('token','true');
-        
         if(res.user?.emailVerified == true) {
-          this.router.navigate(['dashboard']);
-        } 
+          this.fireauth.user.subscribe(user=>{
+            this.afs.collection('users').doc(user?.uid+"/otherInfo/SecuriteDetails").get().subscribe(data=>{
+              if(data.exists) {
+
+                this.router.navigate(['/profile-details']);
+              }else{
+                this.router.navigate(['dashboard']);
+              }
+            });
+      
+           });
+         
+        }
         
     }, err => {
         alert(err.message);

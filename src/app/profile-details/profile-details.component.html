@@ -12,8 +12,9 @@
         <div class="col-sm-3">
             <div class="label d-flex flex-column" id="p1">
                 <div class="plan-details" >Premium Subscription Plan</div>
-                <div class="plan-details" style="margin-top: 50px;color: #CE992F;">Advanced</div>
-                <div class="plan-details" style="color: #CE992F;font-size: 14px;">Rs. 14999</div>
+                <div class="plan-details" *ngIf="expiry_date_" style="margin-top: 50px;color: #CE992F;">{{plan}}</div>
+                <div class="plan-details" *ngIf="!expiry_date_" style="margin-top: 50px;color: #CE992F;">No plan</div>
+                <!-- <div class="plan-details" style="color: #CE992F;font-size: 14px;">Rs. 14999</div> -->
             </div>
         </div>
         <div class="col-sm-3">
@@ -35,14 +36,14 @@
         <div class="col-sm-3">
             <div class="label d-flex flex-column" id="p1">
                 <div class="plan-details" >No. of levels reached</div>
-                <div *ngIf="(left < right)" class="plan-details" style="margin-top: 50px;color: #CE992F;">{{left}}</div>
+                <div *ngIf="(left <= right)" class="plan-details" style="margin-top: 50px;color: #CE992F;">{{left}}</div>
                 <div *ngIf="(right < left)" class="plan-details" style="margin-top: 50px;color: #CE992F;">{{right}}</div>
             </div>
         </div>
         <div class="col-sm-3">
             <div class="label d-flex flex-column" id="p1">
                 <div class="plan-details" >Total Commission Earned</div>
-                <div class="plan-details" style="margin-top: 50px;color: #CE992F;">Rs. 84980</div>
+                <div class="plan-details" style="margin-top: 50px;color: #CE992F;">Rs. {{Commission}}</div>
             </div>
         </div>
         <!-- <div class="col-sm-3">

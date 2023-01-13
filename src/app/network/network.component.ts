@@ -4,6 +4,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { data } from 'jquery';
 import { Observable, of } from 'rxjs';
+import { Tree } from '../models/Tree';
+import { User } from '../models/User';
 
 @Component({
   selector: 'app-network',
@@ -25,7 +27,7 @@ export class NetworkComponent implements OnInit {
   constructor(public afs:AngularFirestore,public auth:AngularFireAuth) {
 
    }
-
+  //  joiningDate
    ngOnInit(): void {
     this.auth.user.subscribe
     (user=>{
@@ -54,6 +56,7 @@ export class NetworkComponent implements OnInit {
               if (datac?.invitationid == this.myUID) {
                 datac!.uID = data.right;
                 // this.user_transfer_arr.push(datac!);
+                
                 this.items?.push(datac!);
               }
               datac!.uID = data.right;
@@ -114,14 +117,3 @@ export class NetworkComponent implements OnInit {
 };
 }
 
-interface Tree {
-  right?:string;
-  left?:string;
-}
-interface User{
-  email:string;
-  invitationid:string;
-  fullName:string;
-  nobNum:string;
-  uID?:string;
-}

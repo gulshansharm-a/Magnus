@@ -3,6 +3,8 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Router } from '@angular/router';
+import { data } from 'jquery';
+import { User } from '../models/User';
 
 @Component({
   selector: 'app-profile-details',
@@ -22,8 +24,8 @@ export class ProfileDetailsComponent implements OnInit {
   myUID?:string;
 
   joining_date?:string;
-  expiry_date_:boolean = true;
-  expiry_date:string = '10/2/2023'
+  expiry_date_:boolean = false;
+  expiry_date?:string = '10/2/2023'
 
   firestore: AngularFirestore;
 
@@ -32,10 +34,22 @@ export class ProfileDetailsComponent implements OnInit {
   recp_name: string = '';
   course_n: string = '';
   amount: string = '';
+  plan?:string;
+  Commission?:string;
 
   constructor(public afs:AngularFirestore,public auth:AngularFireAuth ,private fStore: AngularFirestore, public auths: AngularFireAuth, private storage: AngularFireStorage, private router: Router) { 
     auth.user.subscribe(user=>{
       this.joining_date = user?.metadata.creationTime;
+      fStore.collection<User>('users').doc(user?.uid).valueChanges().subscribe(
+        data=>{
+          if(data?.isPremium) {
+            this.expiry_date_ = true;
+            this.expiry_date = data.expiry
+            this.plan = data.plan
+            this.Commission = data.Commission
+          }
+        }
+      )
     })
     this.firestore = fStore;
 
@@ -146,11 +160,4 @@ export class ProfileDetailsComponent implements OnInit {
 interface Tree {
   right?:string;
   left?:string;
-}
-interface User{
-  email:string;
-  invitationid:string;
-  fullName:string;
-  nobNum:string;
-  uID?:string;
 }
