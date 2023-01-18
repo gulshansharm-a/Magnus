@@ -12,10 +12,12 @@ import { Router } from '@angular/router';
 export class InviteComponent implements OnInit {
   reffer?:string='';
   uid?:string='';
+  url?:string;
   constructor(fStore:AngularFirestore , public auth:AngularFireAuth,private storage:AngularFireStorage ,public route:Router) {
     this.auth.user.subscribe(user=>{
       this.uid = user?.uid;
      });
+    this.url =   window.location.origin
    }
    onclick(data:string) {
     this.reffer = this.uid+"/"+data;

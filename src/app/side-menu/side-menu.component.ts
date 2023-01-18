@@ -20,11 +20,9 @@ export class SideMenuComponent implements OnInit {
         this.isLogedin = false;
         
       }
-       
-      
-        
       
     })
+   
 
   }
 

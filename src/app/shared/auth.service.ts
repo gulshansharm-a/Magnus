@@ -9,7 +9,7 @@ import { collection } from '@angular/fire/firestore';
 import { data } from 'jquery';
 @Injectable({
   providedIn: 'root'
-})
+})   
 export class AuthService {
 
   constructor(private fireauth : AngularFireAuth, private router : Router  , private afs : AngularFirestore) { }
@@ -95,6 +95,7 @@ export class AuthService {
   logout() {
     this.fireauth.signOut().then( () => {
       localStorage.removeItem('token');
+      
     }, err => {
       alert(err.message);
     })

@@ -144,7 +144,6 @@ export class ProfileDetailsComponent implements OnInit {
   }
 
   add_transfer_user() {
-    console.log('RUNN')
   
           this.itemsAll.forEach(element => {
             console.log(element)

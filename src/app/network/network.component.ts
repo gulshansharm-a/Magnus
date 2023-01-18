@@ -45,6 +45,8 @@ export class NetworkComponent implements OnInit {
     
 
   }
+
+  // start
   async traverse(id?:string) {
     this.afs.collection('users').doc(id).collection<Tree>('tree').doc('childs').valueChanges().subscribe(data => {
       if (data?.left != undefined) {
@@ -60,6 +62,9 @@ export class NetworkComponent implements OnInit {
                 this.items?.push(datac!);
               }
               datac!.uID = data.right;
+              this.afs.collection<User>('users').doc(datac?.uID).valueChanges().subscribe(data=>{
+                datac!.profile = data?.profile;
+              })
               this.user_transfer_arr.push(datac!);
               this.itemsAll?.push(datac!);
             }
@@ -76,6 +81,9 @@ export class NetworkComponent implements OnInit {
               if (datac?.invitationid == this.myUID) {
                 datac!.uID = data.right;
                 // console.log(datac!);
+                this.afs.collection<User>('users').doc(datac?.uID).valueChanges().subscribe(data=>{
+                  datac!.profile = data?.profile;
+                })
                 this.items?.push(datac!);
               }
               // console.log(this.itemsAll)
@@ -94,6 +102,7 @@ export class NetworkComponent implements OnInit {
     
    
   }
+  //end
   async checkLeftRight(id:string) {
     this.afs.collection('users').doc(id).collection<Tree>('tree').doc('childs').valueChanges().subscribe(data=>{
       if(data?.left==undefined||data?.right==undefined) {

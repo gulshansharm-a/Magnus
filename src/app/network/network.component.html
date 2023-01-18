@@ -4,6 +4,7 @@
     </div>
 </div>
 <div class="container">
+    
     <div class="row" style="padding-left: 15%;padding-right: 10%;margin-top: 50px;">
         <div class="col">
             <div class="d-flex justify-content-between">
@@ -12,18 +13,22 @@
             </div>
         </div>
     </div>
+
     <div class="row">
-        <div class="col-sm-6">
-            <div class="title" style="font-size: 22px;">Direct Students Subscribed</div>
+        <div class="title" style="font-size: 22px;">Direct Students Subscribed</div>
+        <div class="col-sm-6"  *ngFor="let intem of items" >
+            
             <div class="d-flex flex-column justify-content-center" style="align-items: center;"*ngIf="items?.length!>0;">
                 <!-- <div class="d-flex flex-column justify-content-center" style="align-items: center;"> -->
                 
 
-                <div class="box" style="margin-top: 65px;"  *ngFor="let intem of items">
+                <div class="box" style="margin-top: 65px;" >
                     <div class="d-flex justify-content-between" style="width: 200px;">
                         <!-- <div class="d-flex justify-content-between" style="width: 200px;" > -->
-                        <div class="profile-pic" style="background-image: url('../../assets/img/ellipse-2-10@2x.svg');background-size: 100% 100%;"></div>
+                            <!-- <div class="profile-pic" style="background-image: url('../../assets/img/ellipse-2-10@2x.svg');background-size: 100% 100%;"></div> -->
+                            <img class="profile-pic" src="{{intem['profile']}}">
                         <div class="d-flex flex-column">
+                            
                             <div class="subs" style="font-size: 18px;">{{intem['fullName']}}</div>
                             
                         </div>
@@ -55,15 +60,17 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-6">
-            <div class="title" style="font-size: 22px;">Students subscribed in team</div>
+        <div class="title" style="font-size: 22px;">Students subscribed in team</div>
+        <div class="col-sm-6"  *ngFor="let intem of itemsAll"  >
+            
 
             <div class="d-flex flex-column justify-content-center" style="align-items: center;margin-top: 50px;"*ngIf="itemsAll?.length!>0;">
                
-                <div class="box" style="margin-top: 65px;" *ngFor="let intem of itemsAll" >
+                <div class="box" style="margin-top: 65px;" >
                     <div class="d-flex justify-content-between" style="width: 200px;">
                         <!-- <div class="d-flex justify-content-between" style="width: 200px;" > -->
-                        <div class="profile-pic" style="background-image: url('../../assets/img/ellipse-2-10@2x.svg');background-size: 100% 100%;"></div>
+                        <!-- <div class="profile-pic" style="background-image: url('../../assets/img/ellipse-2-10@2x.svg');background-size: 100% 100%;"></div> -->
+                        <img class="profile-pic" src="{{intem['profile']}}" alt=""  >
                         <div class="d-flex flex-column">
                             <div class="subs" style="font-size: 18px;">{{intem['fullName']}}</div>
                             
@@ -71,8 +78,8 @@
                     </div>
                     <div class="subs" style="font-size: 10px; color: white;">{{intem['uID']}}</div>
                     <div class="d-flex justify-content-between" style="width: 200px;margin-top: 10px;">
-                        <div class="subs" style="color: white;">Joined On:</div>
-                        <div class="subs" style="color: white;">12/05/2022</div>
+                        <div class="subs" style="color: white;">DOJ :</div>
+                        <div class="subs" style="font-size: 10px;  color: white;">{{intem['joiningDate']}}</div>
                     </div>
                     <div class="d-flex justify-content-between" style="width: 200px;">
                         <div class="subs" style="color: white;  ">Referee </div>
@@ -168,7 +175,7 @@
                         <td><div class="subs2" style="font-size: 15px; color: white;" *ngIf="(user.invitationid != user.uID)">{{user.invitationid}}</div></td>
                         <td><div class="subs2" style="font-size: 15px; color: white;">{{user.currentBal}}</div></td>
                         <td><div class="subs2" style="font-size: 15px; color: white;">{{user.expiry_after_transfer}}</div></td>
-                        <td><div class="subs2" style="font-size: 15px; color: white;">{{user.epin}}</div></td>
+                        <td><div class="subs2" style="font-size: 15px; color: white;">{{user.joiningDate}}</div></td>
                       </tr>
                     </tbody>
                   </table>

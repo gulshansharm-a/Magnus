@@ -9,5 +9,6 @@ export interface User{
     plan?:string;
     Commission?:string;
     joiningDate?:string;
+    profile?:string;
 
   }

@@ -6,6 +6,8 @@ import { stringLength } from '@firebase/util';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { data, merge } from 'jquery';
+import { updateProfile } from '@firebase/auth';
 declare var $:any;
 @Component({
   selector: 'app-profile',
@@ -18,13 +20,16 @@ export class ProfileComponent implements OnInit {
    hi?:number = 0;
    alert = false;
    fileurl ?: string;
+   images?:any[];
+   isProfileUploaded?:boolean=false;
+   uploadedProfile?:string;
   constructor(fStore:AngularFirestore , public auth:AngularFireAuth,private storage:AngularFireStorage ,public route:Router ) {
     this.firestore = fStore;
     this.alert = false;
     this.auth.user.subscribe(user=>{
       this.firestore.collection('users').doc(user?.uid+"/otherInfo/SecuriteDetails").get().subscribe(data=>{
         if(data.exists) {
-          this.route.navigate(['/profile-details']);
+          // this.route.navigate(['/profile-details']);
         }
       });
 
@@ -35,20 +40,56 @@ export class ProfileComponent implements OnInit {
    uploadFile(event:any,st:string) {
     const file = event.target.files[0];
     const filePath = 'PersonalDataOfUser/'+this.firestore.createId();
-    const ref = this.storage.ref(filePath);
-    const task = ref.put(file);
+    // const ref = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath,file)
     this.arertdata = st;
     this.alert = true;
+   
     task.percentageChanges().subscribe(data=> {
       this.hi = data;
+      console.log(data)
+    })
+    task.snapshotChanges().subscribe(data=>{
+      data?.ref.getDownloadURL().then(data=>{
+        console.log(data)
+      })
     })
 
-      // ref.getDownloadURL().subscribe(data=> {
-      //   console.log(data)
-      // });
-   
+    
     
   }
+
+
+  uploadFileProfile(event:any,st:string) {
+    const file = event.target.files[0];
+    const filePath = 'profile/'+this.firestore.createId();
+    // const ref = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath,file)
+    this.arertdata = st;
+    this.alert = true;
+   
+    task.percentageChanges().subscribe(data=> {
+      this.hi = data;
+      console.log(data)
+    })
+    task.snapshotChanges().subscribe(data=>{
+      data?.ref.getDownloadURL().then(data=>{
+        console.log(data)
+        this.auth.user.subscribe(user=>{
+
+          this.firestore.collection('users').doc(user?.uid).set({profile:data},{merge:true} );
+          this.isProfileUploaded = true;
+          console.log(data,"use",user?.uid)
+          this.uploadedProfile = data;    
+         });  
+      })
+    })
+
+     
+  }
+
+
+
 
   ngOnInit(): void {
     $('#c1').show();
@@ -72,6 +113,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getAddress(val:NgForm['value']) {
+    console.log("done")
     this.auth.user.subscribe(user=>{
 
       this.firestore.collection('users').doc(user?.uid+"/otherInfo/address").set(val);
@@ -79,11 +121,15 @@ export class ProfileComponent implements OnInit {
      });
   }
   getSecuriteDetails(val:NgForm['value']) {
+   console.log('khk')
     this.auth.user.subscribe(user=>{
 
       this.firestore.collection('users').doc(user?.uid+"/otherInfo/SecuriteDetails").set(val);
-      
+      this.firestore.collection('users').doc(user?.uid+"/otherInfo/SecuriteDetailsImages").set(val);
+      this.route.navigate(['/profile-details']);
+
      });
+
   }
   btnClick(id:any){
     if(id=='c1'){

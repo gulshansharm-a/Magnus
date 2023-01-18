@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
 
 @Component({
@@ -11,7 +13,8 @@ export class LoginComponent implements OnInit {
   email : string = '';
   password : string = '';
   
-  constructor(private auth : AuthService) { }
+  constructor(private auth : AuthService,firebaseAuth :AngularFireAuth,router :Router) { 
+  }
 
   ngOnInit(): void {
   }

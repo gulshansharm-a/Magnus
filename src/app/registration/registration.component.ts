@@ -24,7 +24,9 @@ export class RegistrationComponent implements OnInit {
   myid?:string='';
   tree?:Tree= {
   };
+
   cid ?:ID;
+
   constructor(public rout:ActivatedRoute,private auth : AuthService, fauth:AngularFireAuth,private fdb:AngularFirestore) {
     this.id = rout.snapshot.params['id'];
     this.branch = rout.snapshot.params['branch'];
@@ -66,9 +68,6 @@ export class RegistrationComponent implements OnInit {
     }
     
     this.auth.register(this.email,this.password , this.name , this.mobileNo , this.id);
-    if(this.myid!=''|| this.myid == undefined) {
-      alert('registration not accepted');
-    }
     this.email = '';
     this.password = '';
     this.name = '';
@@ -106,7 +105,6 @@ export class RegistrationComponent implements OnInit {
     })
   }
   }
-
 }
 interface ID{
     cId?:string;

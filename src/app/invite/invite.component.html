@@ -12,7 +12,7 @@
 
             <div class="col-sm-6">
                 <div class="d-flex justify-content-between f1">
-                    <small class="subs" style="margin-top: 20px; font-size: x-small;"  >http://localhost:4200//{{reffer}}</small>
+                    <small class="subs" style="margin-top: 20px; font-size: x-small;"  >{{url}}/{{reffer}}</small>
                     <button class="btn" style="margin-top: 2.5px;" data-toggle="modal" data-target="#myModal">Generate Link</button>
                 </div>
                 <div id="myModal" class="modal fade" role="dialog">
@@ -40,3 +40,19 @@
         </div>
     </div>
 </div>
+
+
+ <script src=
+"https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js">
+    </script>
+  
+    <script>
+        var myApp = angular.module("app", []);
+        myApp.controller("controller",
+            function ($scope, $location) {
+                $scope.url = '';
+                $scope.getUrl = function () {
+                    $scope.url = $location.absUrl();
+                };
+            });
+    </script>
