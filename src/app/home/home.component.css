@@ -1,5 +1,32 @@
 
 @media only screen and (min-width:600px) {
+	.subtitle{
+		font-family: 'Poppins';
+	  font-style: normal;
+	  font-weight: 400;
+	  font-size: 24px;
+	  line-height: 36px;
+	  /* identical to box height */
+	  
+	  
+	  color: #FFFFFF;
+	  margin-top: 28px;
+	  }
+
+	p{
+		font-size: 18px;
+
+	}
+	.t1{
+		font-family: 'Poppins';
+	  font-style: normal;
+	  font-weight: 400;
+	  font-size: 27px;
+	  line-height: 40px;
+	  
+	  color: #FFFFFF;
+	  }
+
 	.main-text{
 		color: white;
 		font-family: poppins;
@@ -65,6 +92,24 @@
 }
 
 @media only screen and (max-width: 600px) {
+	.subtitle{
+		font-family: 'Poppins';
+	  font-style: normal;
+	  font-weight: 400;
+	  font-size: 20px;
+	  line-height: 36px;
+	  /* identical to box height */
+	  
+	  
+	  color: #FFFFFF;
+	  margin-top: 28px;
+	  }
+
+	p{
+		font-size: 15px;
+
+	}
+
 	.main-text{
 		color: white;
 		font-family: poppins;
@@ -148,6 +193,15 @@
 	  .banner{
 		height: 1100px;
 	  }
+	  .t1{
+		font-family: 'Poppins';
+	  font-style: normal;
+	  font-weight: 400;
+	  font-size: 21px;
+	  line-height: 40px;
+	  
+	  color: #FFFFFF;
+	  }
 
 }
 
@@ -167,34 +221,12 @@ height: 440px;
 
 align-items: center;
 }
-.t1{
-  font-family: 'Poppins';
-font-style: normal;
-font-weight: 400;
-font-size: 27px;
-line-height: 40px;
-
-color: #FFFFFF;
-}
 
 .update{
   background: #2A2A2A;
 border-radius: 20px;
 width: 100%;
 padding: 3%;
-}
-
-.subtitle{
-  font-family: 'Poppins';
-font-style: normal;
-font-weight: 400;
-font-size: 24px;
-line-height: 36px;
-/* identical to box height */
-
-
-color: #FFFFFF;
-margin-top: 28px;
 }
 
 /*----------CAROUSEL--------*/
