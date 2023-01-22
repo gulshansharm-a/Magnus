@@ -7,7 +7,9 @@
     color: black;
     padding-left: 20px;
     }
-    
+    .row{
+        --bs-gutter-x: 0rem;
+    }
     .btn{
         background: #CE992F;
     border-radius: 0px 30px 30px 20px;
@@ -42,6 +44,7 @@
     font-weight: 600;
     font-size: 32px;
     line-height: 48px;
+    text-align: center;
     /* identical to box height */
     
     
@@ -97,10 +100,10 @@
     .label{
         background: #2A2A2A;
     border-radius: 10px;
-    width: 289px;
     height: 202px;
     justify-content: center;
     align-items: center;
+    margin-bottom: 10px;
     }
     .plan-details{
         font-family: 'Poppins';
