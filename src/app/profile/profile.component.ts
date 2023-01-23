@@ -105,6 +105,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getBankDetails(valBank :NgForm['value']) {
+    window.scrollTo(0, 0);
     this.auth.user.subscribe(user=>{
 
       this.firestore.collection('users').doc(user?.uid+"/otherInfo/bank").set(valBank);
@@ -113,6 +114,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getAddress(val:NgForm['value']) {
+    window.scrollTo(0, 0);
     console.log("done")
     this.auth.user.subscribe(user=>{
 
@@ -121,6 +123,7 @@ export class ProfileComponent implements OnInit {
      });
   }
   getSecuriteDetails(val:NgForm['value']) {
+    window.scrollTo(0, 0);
    console.log('khk')
     this.auth.user.subscribe(user=>{
 
@@ -144,6 +147,7 @@ export class ProfileComponent implements OnInit {
         $('#c4').show();
         $('#c2').hide();$('#c3').hide();$('#c1').hide();
         }
+        window.scrollTo(0, 0)
   }
 }
 

@@ -102,4 +102,14 @@ export class HeaderComponent implements OnInit {
       }
   });
   }
+  closeNav() {
+    // document.getElementById("mySidenav")!.style.width = "0";
+    // document.getElementById("mySidenav")!.style.marginLeft = "-1000";
+    document.getElementById("mySidenav1")!.style.display = "none";
+  }
+  openNav() {
+    // document.getElementById("mySidenav1")!.style.width = "0";
+    // document.getElementById("mySidenav1")!.style.marginLeft = "-1000";
+    document.getElementById("mySidenav1")!.style.display = "block";
+  }
 }
