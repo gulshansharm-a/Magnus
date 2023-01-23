@@ -70,24 +70,17 @@ export class ProfileDetailsComponent implements OnInit {
            }
     )
 
-    this.auths.user.subscribe(async (user) => {
-      this.firestore
-        .collection("users").doc(user?.uid).collection("referals")
-        .get()
-        .subscribe((data) => {
-          data.forEach(element => {
-            console.log(element.data());
-            // this.user_transfer_arr.push(element.data());
-          });
-        }
-        );
-    });
+    
     
   }
 
   async traverse(id?:string) {
     this.afs.collection('users').doc(id).collection<Tree>('tree').doc('childs').valueChanges().subscribe(data => {
       if (data?.left != undefined) {
+        console.log("check ",id);
+        if(data.left == id) {
+          this.afs.collection('users').doc(id).collection<Tree>('tree').doc('childs').set({left:''},{merge:true});
+        }
         this.checkLeftRight(id!);
         this.left = this.left + 1;
         this.afs.collection<User>('users').doc(data.left).valueChanges().forEach(
@@ -106,7 +99,11 @@ export class ProfileDetailsComponent implements OnInit {
         );
         this.traverse(data.left);
       } if (data?.right != undefined) {
-        console.log(data.right);
+        console.log("check ",id);
+        // console.log(data.right);
+        if(data.right == id) {
+          this.afs.collection('users').doc(id).collection<Tree>('tree').doc('childs').set({right:''},{merge:true});
+        }
         this.checkLeftRight(id!);
         this.afs.collection<User>('users').doc(data.right).valueChanges().forEach(
           datac => {
@@ -115,11 +112,12 @@ export class ProfileDetailsComponent implements OnInit {
               if (datac?.invitationid == this.myUID) {
                 datac!.uID = data.right;
                 // console.log(datac!);
+
                 this.items?.push(datac!);
               }
               // console.log(this.itemsAll)
               datac!.uID = data.right;
-              console.log(datac!);
+              // console.log(datac!);
               this.user_transfer_arr.push(datac!);
               this.itemsAll?.push(datac!);
             }

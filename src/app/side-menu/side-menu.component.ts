@@ -137,6 +137,7 @@ export class SideMenuComponent implements OnInit {
 }
 
 onclick(id:any){
+  
   localStorage.setItem('sideMenu',id)
 }
 
