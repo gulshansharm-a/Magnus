@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
     this.firestore = fStore;
     this.alert = false;
     this.auth.user.subscribe(user=>{
-      this.firestore.collection('users').doc(user?.uid+"/otherInfo/SecuriteDetails").get().subscribe(data=>{
+      this.firestore.collection('users').doc(user?.uid+"/otherInfo/address").get().subscribe(data=>{
         if(data.exists) {
           // this.route.navigate(['/profile-details']);
         }
