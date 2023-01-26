@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
     this.auth.logout()
   }
   
-
   login() {
 
     if(this.email == '') {
