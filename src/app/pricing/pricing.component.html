@@ -50,7 +50,7 @@
           </div>
         </div>
 
-        <div class="label" style="width: 305px">
+        <div class="label" style="width: 305px" *ngIf="logedIn">
           <div class="d-flex justify-content-between" style="width: 250px">
             <img
               src="../../assets/img/image-4@2x.png"
@@ -68,7 +68,10 @@
     <div class="d-flex justify-content-evenly" style="margin-right: 10px">
       <div (click)="razor_pay1()" class="label2 d-flex flex-column">
         <div class="plan-details" style="margin-top: 10px">
-          Forex Market Education
+          Forex Market 
+        </div>
+        <div class="plan-details" style="margin-top: 10px">
+           Education
         </div>
         <div class="plan-details" style="margin-top: 80px; color: #ce992f">
           Rs. 15000 +GST
@@ -83,7 +86,8 @@
         class="label2 d-flex flex-column"
         style="margin-left: 10px"
       >
-        <div class="plan-details">Indian Stock Education</div>
+        <div class="plan-details">Indian Stock </div>
+        <div class="plan-details"> Education</div>
         <div class="plan-details" style="margin-top: 80px; color: #ce992f">
           Rs. 15000 +GST
         </div>

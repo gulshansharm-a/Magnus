@@ -42,7 +42,7 @@
     float: left; text-align: center;
     list-style-type: none;
     position: relative;
-    padding: 20px 5px 0 5px;
+    padding: 10px 25px 0 25px;
 }
 .genealogy-tree li::before, .genealogy-tree li::after{
     content: '';
@@ -109,12 +109,12 @@
     position: relative;
 }
 .member-image{
-    width: 60px;
+    width: 40px;
     position: relative;
 }
 .member-image img{
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     border-radius: 6px;
   background-color :#000;
   z-index: 1;

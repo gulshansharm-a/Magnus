@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col">
-<app-side-menu></app-side-menu>
+        <app-side-menu></app-side-menu>
     </div>
 </div>
 
@@ -9,18 +9,124 @@
         <div class="col-sm-3">
             <div class="title">Personal Details</div>
         </div>
-        <div class="col-sm-3">
+        <!-- <div class="col-sm-3">
             <div class="label d-flex flex-column" id="p1">
-                <div class="plan-details" >Premium Subscription Plan</div>
+                 <thead style="background: #CE992F;">
+                    <tr>
+                        <div class="plan-details" >Premium Subscription Plan</div>
+                  
+                  </thead> 
+                
                 <div class="plan-details" *ngIf="expiry_date_" style="margin-top: 50px;color: #CE992F;">{{plan}}</div>
                 <div class="plan-details" *ngIf="!expiry_date_" style="margin-top: 50px;color: #CE992F;">No plan</div>
-                <!-- <div class="plan-details" style="color: #CE992F;font-size: 14px;">Rs. 14999</div> -->
+            
+            </div>
+        </div> -->
+        <div class="col-sm-3 card text-center" style="background: #2A2A2A;
+            margin-top: 12px; ;">
+            <div class="card-header" style="background: #CE992F;">
+                Plan
+            </div>
+            <div class="card-body">
+                <h5 class="card-title" style="color: white;">Premium
+                    Subscription Plan</h5>
+                <p class="card-text" style="color: white;">you are a premium
+                    member.</p>
+            </div>
+            <div class="card-footer text-muted" style="background: #CE992F;">
+                <div class="plan-details" *ngIf="expiry_date_" style="color:
+                    #392907;">{{plan}}</div>
+                <div class="plan-details" *ngIf="!expiry_date_" style="color:
+                    #392907;">Premium</div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 card text-center" style="background: #2A2A2A;
+            margin-top: 12px; ;">
+            <div class="card-header" style="background: #CE992F;">
+                Account Expiry Date
+            </div>
+            <div class="card-body">
+                <h5 class="card-title" style="color: white;">Please upgrade your
+                    plan before expiry date</h5>
+                <p class="card-text" style="color: white;">your account will
+                    expire on.</p>
+            </div>
+            <div class="card-footer text-muted" style="background: #CE992F;">
+                <div class="plan-details" *ngIf="!expiry_date_" style="color:
+                    #392907;">{{expiry_date}}</div>
+                <div class="plan-details" *ngIf="expiry_date_" style="color:
+                    #392907;">No plan</div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 card text-center" style="background: #2A2A2A;
+            margin-top: 12px;;">
+            <div class="card-header" style="background: #CE992F;">
+                Joining Date
+
+            </div>
+            <div class="card-body">
+                <h5 class="card-title" style="color: white;">when you have
+                    registered </h5>
+                <p class="card-text" style="color: white;">your account</p>
+            </div>
+            <div class="card-footer text-muted" style="background: #CE992F;">
+                <div class="plan-details" style=" font: 10px; color: #392907;">{{joining_date}}</div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 card text-center" style="background: #2A2A2A;
+            margin-top: 12px; ;">
+            <div class="card-header" style="background: #CE992F;">
+                Level
+            </div>
+            <div class="card-body">
+                <h5 class="card-title" style="color: white;">Number of level
+                    reached</h5>
+                <p class="card-text" style="color: white;"></p>
+            </div>
+            <div class="card-footer text-muted" style="background: #CE992F;">
+                <div *ngIf="(left <= right)" class="plan-details" style="color:
+                    #392907;">{{left}}</div>
+                <div *ngIf="(right <left)" clas
+                s="plan-details" style="color:
+                    #392907;">{{right}}</div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 card text-center" style="background: #2A2A2A;
+            margin-top: 12px; ;">
+            <div class="card-header" style="background: #CE992F;">
+                Commission
+            </div>
+            <div class="card-body">
+                <h5 class="card-title" style="color: white;">Refer and earn
+                    commission</h5>
+                <p class="card-text" style="color: white;">your current
+                    commission is</p>
+            </div>
+            <div class="card-footer text-muted" style="background: #CE992F;">
+                <div class="plan-details" style="color: #392907;">Rs
+                    {{Commission}}.0</div>
+            </div>
+        </div>
+
+
+        <!-- <div class="row" style="margin-top: 60px;">
+            
+
+        <div class="col-sm-3">
+            <div class="label d-flex flex-column" id="p1">
+                <div class="plan-details" >Account Expiry Date</div>
+                <div class="plan-details" *ngIf="!expiry_date_" style="margin-top: 50px;color: #CE992F;"></div>
+                <div class="plan-details"*ngIf="expiry_date_" style="margin-top: 50px;color: #CE992F;">Not a premium Member</div>
             </div>
         </div>
         <div class="col-sm-3">
             <div class="label d-flex flex-column" id="p1">
                 <div class="plan-details" >Account Expiry Date</div>
-                <div class="plan-details" *ngIf="!expiry_date_" style="margin-top: 50px;color: #CE992F;">{{expiry_date}}</div>
+                <div class="plan-details" *ngIf="!expiry_date_" style="margin-top: 50px;color: #CE992F;"></div>
                 <div class="plan-details"*ngIf="expiry_date_" style="margin-top: 50px;color: #CE992F;">Not a premium Member</div>
             </div>
         </div>
@@ -30,22 +136,7 @@
                 <div class="plan-details" style=" font-size: 20px   ;margin-top: 50px;color: #CE992F;">{{joining_date}}</div>
             </div>
         </div>
-    </div>
-
-    <div class="row" style="margin-top: 60px;">
-        <div class="col-sm-3">
-            <div class="label d-flex flex-column" id="p1">
-                <div class="plan-details" >No. of levels reached</div>
-                <div *ngIf="(left <= right)" class="plan-details" style="margin-top: 50px;color: #CE992F;">{{left}}</div>
-                <div *ngIf="(right < left)" class="plan-details" style="margin-top: 50px;color: #CE992F;">{{right}}</div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="label d-flex flex-column" id="p1">
-                <div class="plan-details" >Total Commission Earned</div>
-                <div class="plan-details" style="margin-top: 50px;color: #CE992F;">Rs. {{Commission}}</div>
-            </div>
-        </div>
+    </div> -->
         <!-- <div class="col-sm-3">
             <div class="label d-flex flex-column" id="p1">
                 <div class="plan-details" >KYC status</div>
@@ -87,7 +178,6 @@
         </div>
     </div>
 </div> -->
-
 <div class="row">
     <div class="col">
         <div class="divider"></div>
@@ -99,44 +189,113 @@
         <div class="col-sm-3">
             <div class="title">Overall business summary</div>
         </div>
-        <div class="col-sm-3">
-            <div class="label d-flex flex-column" id="p1">
-                <div class="plan-details" >No. of course 1 subscription</div>
-                <div class="plan-details" style="margin-top: 50px;color: #CE992F;">0</div>
-            </div>
+       
+        <div class="col-sm-3 card text-center" style="background: #2A2A2A;
+        margin-top: 12px; ;">
+        <div class="card-header" style="background: #CE992F;">
+            Number of Course 1 Subscriptions
         </div>
-        <div class="col-sm-3">
-            <div class="label d-flex flex-column" id="p1">
-                <div class="plan-details" >No. of course 2 subscription</div>
-                <div class="plan-details" style="margin-top: 50px;color: #CE992F;">0</div>
-            </div>
+        <div class="card-body">
+            <!-- <h5 class="card-title" style="color: white;">Number of team members subscribed for course 1</h5> -->
+            <p class="card-text" style="color: white;"></p>
         </div>
-        <div class="col-sm-3">
-            <div class="label d-flex flex-column" id="p1">
-                <div class="plan-details" >No. of course 3 subscription</div>
-                <div class="plan-details" style="margin-top: 50px;color: #CE992F;">0</div>
-            </div>
+        <div class="card-footer text-muted" style="background: #CE992F;">
+            <div class="plan-details" style="color:
+                #392907;">0</div>
+            
         </div>
     </div>
 
-    <div class="row" style="margin-top: 60px;">
-        <div class="col-sm-3">
+        <!-- <div class="col-sm-3">
             <div class="label d-flex flex-column" id="p1">
-                <div class="plan-details" >Total Direct Subscription</div>
-                <div class="plan-details" style="margin-top: 50px;color: #CE992F;">0</div>
+                <div class="plan-details">No. of course 1 subscription</div>
+                <div class="plan-details" style="margin-top: 50px;color:
+                    #CE992F;">0</div>
             </div>
-        </div>
-        <div class="col-sm-3">
+        </div> -->
+        <!-- <div class="col-sm-3">
             <div class="label d-flex flex-column" id="p1">
-                <div class="plan-details" >Total team subscriptions</div>
-                <div class="plan-details" style="margin-top: 50px;color: #CE992F;">0</div>
+                <div class="plan-details">No. of course 2 subscription</div>
+                <div class="plan-details" style="margin-top: 50px;color:
+                    #CE992F;">0</div>
             </div>
+        </div> -->
+        <div class="col-sm-3 card text-center" style="background: #2A2A2A;
+        margin-top: 12px; ;">
+        <div class="card-header" style="background: #CE992F;">
+            Number of Course 2 Subscriptions
         </div>
-        <div class="col-sm-3">
-            <div class="label d-flex flex-column" id="p1">
-                <div class="plan-details" >No. of pairs completed</div>
-                <div class="plan-details" style="margin-top: 50px;color: #CE992F;">04</div>
-            </div>
+        <div class="card-body">
+            <!-- <h5 class="card-title" style="color: white;">Number of team members subscribed for course 1</h5> -->
+            <p class="card-text" style="color: white;"></p>
         </div>
+        <div class="card-footer text-muted" style="background: #CE992F;">
+            <div class="plan-details" style="color:
+                #392907;">0</div>
+            
+        </div>
+    </div>
+    <div class="col-sm-3 card text-center" style="background: #2A2A2A;
+    margin-top: 12px; ;">
+    <div class="card-header" style="background: #CE992F;">
+        Number of Course 3 Subscriptions
+    </div>
+    <div class="card-body">
+        <!-- <h5 class="card-title" style="color: white;">Number of team members subscribed for course 1</h5> -->
+        <p class="card-text" style="color: white;"></p>
+    </div>
+    <div class="card-footer text-muted" style="background: #CE992F;">
+        <div class="plan-details" style="color:
+            #392907;">0</div>
+        
+    </div>
+</div>
+
+<div class="col-sm-3 card text-center" style="background: #2A2A2A;
+margin-top: 12px; ;">
+<div class="card-header" style="background: #CE992F;">
+    Total Direct Subscription
+</div>
+<div class="card-body">
+    <!-- <h5 class="card-title" style="color: white;">Number of team members subscribed for course 1</h5> -->
+    <p class="card-text" style="color: white;"></p>
+</div>
+<div class="card-footer text-muted" style="background: #CE992F;">
+    <div class="plan-details" style="color:
+        #392907;">0</div>
+    
+</div>
+</div>
+<div class="col-sm-3 card text-center" style="background: #2A2A2A;
+margin-top: 12px; ;">
+<div class="card-header" style="background: #CE992F;">
+    Total team subscriptions
+
+</div>
+<div class="card-body">
+    <!-- <h5 class="card-title" style="color: white;">Number of team members subscribed for course 1</h5> -->
+    <p class="card-text" style="color: white;"></p>
+</div>
+<div class="card-footer text-muted" style="background: #CE992F;">
+    <div class="plan-details" style="color:
+        #392907;">0</div>
+    
+</div>
+</div>
+<div class="col-sm-3 card text-center" style="background: #2A2A2A;
+margin-top: 12px; ;">
+<div class="card-header" style="background: #CE992F;">
+    No. of pairs completed
+</div>
+<div class="card-body">
+    <!-- <h5 class="card-title" style="color: white;">Number of team members subscribed for course 1</h5> -->
+    <p class="card-text" style="color: white;"></p>
+</div>
+<div class="card-footer text-muted" style="background: #CE992F;">
+    <div class="plan-details" style="color:
+        #392907;">4</div>
+    
+</div>
+</div>
     </div>
 </div>

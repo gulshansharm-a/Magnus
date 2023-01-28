@@ -21,6 +21,7 @@ export class NetworkComponent implements OnInit {
   left:number=0;
   right:number=0;
   number_of_payer_left:number=0;
+  number_of_payer:number=0;
   items?:User[] = new Array<User>;
   itemsAll:User[] = new Array<User>;
   myUID?:string;
@@ -107,6 +108,9 @@ export class NetworkComponent implements OnInit {
     this.afs.collection('users').doc(id).collection<Tree>('tree').doc('childs').valueChanges().subscribe(data=>{
       if(data?.left==undefined||data?.right==undefined) {
         this.number_of_payer_left = this.number_of_payer_left+1
+      }else 
+      if(data?.left!=undefined&&data?.right!=undefined) {
+        this.number_of_payer = this.number_of_payer+1
       }
     }
     )

@@ -34,6 +34,7 @@ export class TreeViewComponent implements OnInit {
      left_right_left_?:boolean;
      left_right_right_?:boolean;
 
+     parent_i ?:boolean;
      left_i?:boolean;
      left_left_i?:boolean;
      left_right_i?:boolean;
@@ -95,6 +96,15 @@ export class TreeViewComponent implements OnInit {
       this.fauth.user.subscribe(user=>{
         this.myid = user?.uid
       })
+      
+      this.fdb.collection<User>('users').doc(user).valueChanges().subscribe(data=>{
+      
+          if( data?.isPremium == true ) {
+              this.parent_i = true;
+          } else this.parent_i = false;
+          console.log(this.parent_i,data?.isPremium,user)
+      })
+
      user =  this.rout.snapshot.params['parent']
       this.parent = this.rout.snapshot.params['parent']
       this.stack.push(user)

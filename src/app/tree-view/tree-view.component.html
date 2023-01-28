@@ -1,15 +1,38 @@
 <div class="body genealogy-body genealogy-scroll">
     <button (click)="addDataToTree(myid!)" style="color: burlywood;" *ngIf="parent != myid" >Move to Top</button>
+   
     <div class="genealogy-tree">
-        <!-- <button (click)="move_to_up()" >submit</button> -->
+        <ul class="line">
+            <div class="d-flex justify-content-start bg-light mb-3">
+                <div class="p-2 col-example">  <div class="member-image">
+                    <img src="../../assets/OIP.jpg" alt="Member">
+                    <div class="member-details">
+                        <h3 style="font-size: 9px;  font-family :Impact,'Arial Narrow Bold'" >Unpaid</h3>
+                        
+                    </div>
+                </div></div>
+                <div class="p-2 col-example">          </div>
+                <div class="p-2 col-example">  <div class="member-image">
+                    <img src="../../assets/OIP.jpg" *ngIf="parent_i" alt="Member">
+                    <img src="../../assets/avatar.jpg" *ngIf="!parent_i" alt="Member"> 
+                    <div class="member-details">
+                        <h3 style="font-size: 9px;  font-family :Impact,'Arial Narrow Bold'" >Paid</h3>
+                        
+                    </div>
+                </div></div>
+              </div>
+          </ul>
+        
         <ul>
+            
             <li>
                 
                 <a href="javascript:void(0);" >
                     <div class="member-view-box">
                         <div class="member-image">
                             <!-- <img src="../../assets/OIP.jpg" *ngIf="isPremium" alt="Member"> -->
-                            <img src="../../assets/avatar.jpg"  alt="Member"> 
+                            <img src="../../assets/OIP.jpg" *ngIf="left_i" alt="Member">
+                            <img src="../../assets/avatar.jpg" *ngIf="!left_i" alt="Member"> 
                             <div class="member-details">
                                 <h3 style="font-size: 9px;  font-family :Impact,'Arial Narrow Bold'" >{{parent}}</h3>
                             </div>
@@ -17,7 +40,7 @@
                     </div>
                 </a>
                 <ul class="active">
-                    <li>
+                    <li class="lis">
                         <a href="javascript:void(0);" (click)="addDataToTree(left)"  *ngIf="left" data-toggle="popover" data-content="Specify required content inside popover" title="not Premium User  {{left}}">
                             <div class="member-view-box">
                                 <div class="member-image">
@@ -32,7 +55,7 @@
                             </div>
                         </a>
                         
-                        <ul >
+                  <ul >
                             <li>
                                 <a data-toggle="popover" data-content="Specify required content inside popover" title="not Premium User  {{left_left}}" (click)="addDataToTree(left_left)" href="javascript:void(0);"  *ngIf="left_left" >
                                     <div class="member-view-box">

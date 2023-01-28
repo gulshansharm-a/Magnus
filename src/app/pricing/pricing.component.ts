@@ -4,6 +4,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+import { user } from '@angular/fire/auth';
 
 declare var Razorpay: any;
 
@@ -14,9 +15,15 @@ declare var Razorpay: any;
 })
 export class PricingComponent implements OnInit {
   firestore: AngularFirestore;
-
+  logedIn:boolean =false;
   constructor(private auth: AuthService, fStore: AngularFirestore, public auths: AngularFireAuth, private storage: AngularFireStorage, private router: Router) {
     this.firestore = fStore;
+    auths.user.subscribe(data=>{
+      if(data?.uid != null) {
+        this.logedIn = true;
+      }else this.logedIn = false;
+    })
+
 
   }
 
