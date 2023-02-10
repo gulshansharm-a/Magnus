@@ -1,8 +1,62 @@
-.row {
-  --bs-gutter-x: 0rem;
-}
 
 @media only screen and (min-width: 600px) {
+  .course_title{
+    color: #ce992f;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    position: relative;
+    margin: 30px 0 60px;
+    }
+  .course_title::after {
+    content: "";
+    width: 300px;
+    position: absolute;
+    margin: 0 auto;
+    height: 3px;
+    background: #ff5a1a;
+    left: 0;
+    right: 0;
+    top: -10px;
+  }
+  .imgUpd {
+    width: 450px;
+    height: 300px;
+    border-radius: 10px;
+    transition: width 0.3s, height 0.4s;
+  }
+  .imgUpd:hover {
+    width: 460px;
+    height: 310px;
+    border-radius: 10px;
+  }
+  input {font-weight:bold;}
+  .why_img{
+    width: 695px;
+    height: 560px;
+  }
+  .why_box{
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  .welcome_box{
+    padding-bottom: 50px;
+  }
+  .why_desc{
+    font-size: 28px;
+  }
+  .welcome_desc{
+    font-size: 28px;
+  }
+  .welcome_img{
+    width: 695px;
+    height: 457px;
+  }
+  /* .hero{
+    height: 1000px;
+  } */
   .subtitle {
     font-family: "Poppins";
     font-style: normal;
@@ -37,6 +91,7 @@
     line-height: normal;
   }
   .title {
+    margin-top: 60px;
     font-family: "Poppins";
     font-style: normal;
     font-weight: 600;
@@ -49,12 +104,10 @@
     color: white;
     font-family: poppins;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 20px;
     line-height: 24px;
-    max-width: 528px;
-    height: 220px;
-    margin-top: 20px;
+    max-width: 800px;
   }
   .img1 {
     width: 383px;
@@ -63,9 +116,11 @@
     top: 50px;
   }
   .img2 {
-    width: 255px;
-    height: 173px;
-    position: relative;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    width: 555px;
+    height: 900px;
+    position: center;
     right: 80px;
   }
   .img3 {
@@ -107,6 +162,54 @@
 }
 
 @media only screen and (max-width: 600px) {
+  .course_title{
+    color: #ce992f;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    position: relative;
+    margin: 30px 0 60px;
+    }
+  .course_title::after {
+    content: "";
+    width: 300px;
+    position: absolute;
+    margin: 0 auto;
+    height: 3px;
+    background: #ff5a1a;
+    left: 0;
+    right: 0;
+    top: -10px;
+  }
+
+  .imgUpd {
+    width: 450px;
+    height: 300px;
+    border-radius: 10px;
+    transition: width 0.3s, height 0.4s;
+  }
+  .imgUpd:hover {
+    width: 460px;
+    height: 310px;
+    border-radius: 10px;
+  }
+  .welcome_box{
+    /* padding-bottom: 20px; */
+  }
+  .why_desc{
+    padding-top: 20px;
+    font-size: 15px;
+  }
+  .welcome_desc{
+    text-align: center;
+    padding-top: 20px;
+    font-size: 15px;
+  }
+  /* .hero{
+    height: 3000px;
+  } */
   .subtitle {
     font-family: "Poppins";
     font-style: normal;
@@ -119,19 +222,17 @@
     margin-top: 28px;
   }
 
-  p {
-    font-size: 15px;
-  }
 
   .main-text {
+    text-align: center;
     color: white;
     font-family: poppins;
     font-size: 30px;
     font-weight: 600;
     letter-spacing: 0;
     line-height: normal;
-    padding-bottom: 30px;
-    padding-top: 30px;
+    /* padding-bottom: 30px; */
+    padding-top: 20px;
   }
 
   .title {
@@ -150,7 +251,7 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
-    max-width: 528px;
+    max-width: 828px;
     margin-top: 20px;
   }
   .img1 {
@@ -182,10 +283,7 @@
     left: 25%;
     visibility: hidden;
   }
-  .imgUpd {
-    width: 200px;
-    height: 150px;
-  }
+
   #imgX {
     left: 14%;
   }
@@ -216,10 +314,10 @@
   .contact {
     height: 500px;
   }
-  .banner {
+  /* .banner {
     height: 1100px;
     margin-left: 3%;
-  }
+  } */
   .t1 {
     font-family: "Poppins";
     font-style: normal;
@@ -307,6 +405,7 @@ h2::after {
 }
 .carousel .testimonial {
   padding: 30px 0 10px;
+  font-weight: bold;
 }
 .carousel .overview {
   font-style: italic;
