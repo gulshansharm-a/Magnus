@@ -4,6 +4,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { ApplyFlitersComponent } from './apply-fliters/apply-fliters.component';
 import { ContactComponent } from './contact/contact.component';
 import { CoursesComponent } from './courses/courses.component';
+import { DashboardWgComponent } from './dashboard-wg/dashboard-wg.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EarningsComponent } from './earnings/earnings.component';
 import { FilterResultComponent } from './filter-result/filter-result.component';
@@ -25,6 +26,7 @@ import { ShowTreeViewComponent } from './show-tree-view/show-tree-view.component
 import { SuccessEpinComponent } from './success-epin/success-epin.component';
 import { TotalEarningsComponent } from './total-earnings/total-earnings.component';
 import { TransferEpinComponent } from './transfer-epin/transfer-epin.component';
+import { TreeviewWgComponent } from './treeview-wg/treeview-wg.component';
 import { UiCardComponent } from './ui-card/ui-card.component';
 import { UpgradeSubscriptionComponent } from './upgrade-subscription/upgrade-subscription.component';
 import { VideosComponent } from './videos/videos.component';
@@ -56,6 +58,9 @@ const routes: Routes = [
   {path: 'transfer-E-pin', component: TransferEpinComponent},
   {path: 'success-e-pin', component: SuccessEpinComponent},
   {path: 'upgrade', component: UpgradeSubscriptionComponent},
+  {path: 'dashboard-al', component: DashboardWgComponent},
+  {path: 'tree-al', component: TreeviewWgComponent},
+
 ];
 
 @NgModule({

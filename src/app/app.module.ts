@@ -43,6 +43,9 @@ import { FormsModule } from '@angular/forms';
 import { InviteRightComponentComponent } from './invite-right-component/invite-right-component.component';
 import { InviteLeftComponentComponent } from './invite-left-component/invite-left-component.component';
 import { UiCardComponent } from './ui-card/ui-card.component';
+import { DashboardWgComponent } from './dashboard-wg/dashboard-wg.component';
+import { TreeviewWgComponent } from './treeview-wg/treeview-wg.component';
+import { Tree1AlComponent } from './tree1-al/tree1-al.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,7 +81,10 @@ import { UiCardComponent } from './ui-card/ui-card.component';
     UpgradeSubscriptionComponent,
     InviteRightComponentComponent,
     InviteLeftComponentComponent,
-    UiCardComponent
+    UiCardComponent,
+    DashboardWgComponent,
+    TreeviewWgComponent,
+    Tree1AlComponent
   ],
   imports: [
     BrowserModule,

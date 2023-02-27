@@ -9,11 +9,14 @@ declare var jQuery: any;
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+   }
 
   ngOnInit(): void {
   }
 
+  ngOnUpdate():void {
+    console.log("dklf");
+  }
   
-
 }

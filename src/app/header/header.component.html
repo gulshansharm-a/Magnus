@@ -35,6 +35,7 @@
     </ul>
     <!-- <a   class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200 menus" href="#" style="background: #CE992F;border-radius: 0px 30px 30px 20px;" routerLink="registration">Register</a> -->
     <a  class="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200 menus" href="#" style="border: 1px solid #CE992F;border-radius: 30px 20px 0px 30px;background: #1F1F1F;" *ngIf="!isLogedin" routerLink="login">Login</a>
+    <a  class="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200 menus" href="null/null" style="border: 1px solid #CE992F;border-radius: 30px 20px 0px 30px;background: #1F1F1F;" *ngIf="!isLogedin" >Register</a>
     <a  class="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200 menus" href="#" 
     style="border: 1px solid #CE992F;border-radius: 30px 20px 0px 30px;background: #1F1F1F;" *ngIf="isLogedin" routerLink="login" (click)="logout()" >Logout</a>
   
@@ -63,6 +64,7 @@
           <li class="mb-1">
             <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="#" routerLink="about-us">About Us</a>
           </li>
+
           <li class="mb-1">
             <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="#" routerLink="invite">Invite</a>
           </li>
@@ -78,6 +80,9 @@
         <div class="pt-6">
           <a class="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold leading-none bg-gray-50 hover:bg-gray-100 rounded-xl" href="#" style="background: #CE992F;border-radius: 0px 30px 30px 20px;" routerLink="login" *ngIf="!isLogedin"  >Login</a>
           </div>
+          <div class="pt-6">
+            <a class="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold leading-none bg-gray-50 hover:bg-gray-100 rounded-xl" href="null/null  " style="background: #CE992F;border-radius: 0px 30px 30px 20px;"  *ngIf="!isLogedin"  >Register</a>
+            </div>
         <p class="my-4 text-xs text-center text-gray-400">
           <span>Copyright © 2021</span>
         </p>

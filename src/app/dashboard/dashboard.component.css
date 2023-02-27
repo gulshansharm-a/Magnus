@@ -1,0 +1,60 @@
+
+
+.loader {
+    height: 80px;
+    width: 80px;
+    padding: 15px;
+    /* background-image: url('../Content/Images/Loader.gif'); */
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    left: 45%;
+    top: 50%;
+}
+
+.view-file-in {
+    height: 65px;
+    padding: 2px 0px;
+}
+
+
+
+.table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+
+.stausImg {
+    width: 25px;
+    height: 25px;
+}
+
+#MyrecentJoining_filter {
+    display: none;
+}
+
+.jqstooltip {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    visibility: hidden;
+    background: rgb(0, 0, 0) transparent;
+    background-color: rgba(0, 0, 0, 0.6);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+    color: white;
+    font: 10px arial, san serif;
+    text-align: left;
+    white-space: nowrap;
+    padding: 5px;
+    border: 1px solid white;
+    z-index: 10000;
+}
+
+.jqsfield {
+    color: white;
+    font: 10px arial, san serif;
+    text-align: left;
+}

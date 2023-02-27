@@ -73,7 +73,7 @@ export class RegistrationComponent implements OnInit {
     this.name = '';
     this.invitationCode = '';
     this.mobileNo = '';
-   
+   if(this.branch!="null")
     this.setLocationInTree(this.id);
   }
 
